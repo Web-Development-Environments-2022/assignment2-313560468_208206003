@@ -15,6 +15,8 @@ $(document).ready(function () {
 	document.getElementById("score").style.display = "none";
 	document.getElementById("game").style.display = "none";
 	document.getElementById("login").style.display = "none";
+	document.getElementById("signUp").style.display = "none";
+
 
 	context = canvas.getContext("2d");
 
@@ -23,43 +25,43 @@ $(document).ready(function () {
 			userNameS: {
 				required: true,
 				isUserExist: true
+			},
+			passwordS: {
+				required: true,
+				isStrongPassword: true
+			},
+			email: {
+				required: true,
+				email: true
+			},
+			birthday: {
+				required: true,
+			},
+			fullName: {
+				required: true,
+				isValidName: true
 			}
-			// passwordS: {
-			// 	required: true,
-			// 	isStrongPassword: true
-			// },
-			// email: {
-			// 	required: true,
-			// 	isValidEmail: true
-			// },
-			// birthday: {
-			// 	required: true,
-			// },
-			// fullName: {
-			// 	required: true,
-			// 	isValidName: true
-			// }
 		},
 		messages: {
-			userName: {
+			userNameS: {
 				required: "Please enter a user name.",
 				isUserExist: "The user name is already exists."
+			},
+			passwordS: {
+				required: "Please enter a password.",
+				isStrongPassword: "the password must contain at least 6 chars and at least 1 number."
+			},
+			email: {
+				required: "please enter an email.",
+				email: "please enter a valid email."
+			},
+			birthday: {
+				required: "please enter your birthday."
+			},
+			fullName: {
+				required: "Please enter your full name.",
+				isValidName: "Please enter letters only."
 			}
-			// password: {
-			// 	required: "Please enter a password.",
-			// 	isStrongPassword: "the password must contain at least 6 chars and at least 1 number."
-			// },
-			// email: {
-			// 	required: "please enter an email.",
-			// 	isValidEmail: "please enter a valid email."
-			// },
-			// birthday: {
-			// 	required: "please enter your birthday."
-			// },
-			// fullName: {
-			// 	required: "Please enter your full name.",
-			// 	isValidName: "Please enter letters only."
-			// }
 		},
 
 		submitHandler: function () {
@@ -69,6 +71,32 @@ $(document).ready(function () {
 			users[userName] = password;
 			console.log(users);
 		}
+	});
+
+	$("#loginForm").validate({
+		rules: {
+			userNameL: {
+				required: true,
+			},
+			passwordL: {
+				required: true,
+				isValidLogin: true
+			}
+		},
+		messages: {
+			userNameL: {
+				required: "Please enter user name."
+			},
+			passwordL: {
+				required: "Please enter your password",
+				isValidLogin: "Username or password is wrong."
+			}
+		},
+		submitHandler: function () {
+			//continue to game propertis choose;
+			console.log("successful login");
+		}
+		
 	});
 
 });
@@ -84,6 +112,26 @@ $(function () {
 	})
 });
 
+$(function () {
+	$.validator.addMethod("isStrongPassword", function (password, elem) {
+		return password.length >= 6  && /\d/.test(password) && /[a-zA-Z]/.test(password);
+	})
+});
+
+$(function () {
+	$.validator.addMethod("isValidName", function (name, elem) {
+		return /^[a-zA-Z" "]+$/.test(name);
+	})
+});
+
+$(function () {
+	$.validator.addMethod("isValidLogin", function (password, elem) {
+		let userName = document.getElementById("userNameL").value;
+		return users[userName] == password;
+	})
+});
+
+/*---------------------Login validation---------------------*/
 
 
 /*--------------------------start game-------------------------------*/
@@ -254,25 +302,30 @@ function loginScreen() {
 	document.getElementById("welcomeScreen").style.display = "none";
 	document.getElementById("login").style.display = "block";
 }
-function submitLogin() {
-	let userName = document.getElementById("LuserName").value;
-	let password = document.getElementById("Lpaswword").value;
-	validateUser();
 
+function signUpScreen() {
+	document.getElementById("welcomeScreen").style.display = "none";
+	document.getElementById("signUp").style.display = "block";
 }
-function submitSignUp() {
-	let userName = document.getElementById("SuserName").value;
-	let pass = document.getElementById("Spassword").value;
-	let name = document.getElementById("fullName").value;
-	let email = document.getElementById("Email").value;
-	let birthday = document.getElementById("birthday").value;
-}
-function createUser(userName, pass, name, email, birthday) {
+// function submitLogin() {
+// 	let userName = document.getElementById("LuserName").value;
+// 	let password = document.getElementById("Lpaswword").value;
+// 	validateUser();
 
-	let user = { username: userName, password: pass, fullName: name, mail: email, dayOfBirth: birthday }
+// }
+// function submitSignUp() {
+// 	let userName = document.getElementById("SuserName").value;
+// 	let pass = document.getElementById("Spassword").value;
+// 	let name = document.getElementById("fullName").value;
+// 	let email = document.getElementById("Email").value;
+// 	let birthday = document.getElementById("birthday").value;
+// }
+// function createUser(userName, pass, name, email, birthday) {
+
+// 	let user = { username: userName, password: pass, fullName: name, mail: email, dayOfBirth: birthday }
 
 
-}
+// }
 
 function validateUser() {
 

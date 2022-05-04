@@ -1,0 +1,49 @@
+form {
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+input {
+
+    color: black;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 10px;
+    line-height: 22px;
+    background-color: transparent;
+    border: 2px solid rgb(94, 94, 247);
+    transition: width 0.3s;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input:hover {
+    width: 105%;
+
+}
+
+input:focus {
+    border: 2px solid #401ffc;
+}
+
+[type="submit"], [type="cancel"] {
+    font-family: sans-serif;
+    width: 100%;
+    background: #282A35;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    padding: 10px;
+    transition: all 0.3s;
+    font-weight: 700;
+    text-align: center;
+}
+
+[type="submit"]:hover, [type="cancel"]:hover {
+    background: black;
+}
