@@ -1,3 +1,4 @@
+
 var context;
 var shape = new Object();
 var board;
@@ -6,13 +7,90 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+var doc;
+var users = { "k": "k" };
 
-$(document).ready(function() {
+$(document).ready(function () {
+	document.getElementById("time").style.display = "none";
+	document.getElementById("score").style.display = "none";
+	document.getElementById("game").style.display = "none";
+	document.getElementById("login").style.display = "none";
+
 	context = canvas.getContext("2d");
-	Start();
+
+	$("#signUpForm").validate({
+		rules: {
+			userNameS: {
+				required: true,
+				isUserExist: true
+			}
+			// passwordS: {
+			// 	required: true,
+			// 	isStrongPassword: true
+			// },
+			// email: {
+			// 	required: true,
+			// 	isValidEmail: true
+			// },
+			// birthday: {
+			// 	required: true,
+			// },
+			// fullName: {
+			// 	required: true,
+			// 	isValidName: true
+			// }
+		},
+		messages: {
+			userName: {
+				required: "Please enter a user name.",
+				isUserExist: "The user name is already exists."
+			}
+			// password: {
+			// 	required: "Please enter a password.",
+			// 	isStrongPassword: "the password must contain at least 6 chars and at least 1 number."
+			// },
+			// email: {
+			// 	required: "please enter an email.",
+			// 	isValidEmail: "please enter a valid email."
+			// },
+			// birthday: {
+			// 	required: "please enter your birthday."
+			// },
+			// fullName: {
+			// 	required: "Please enter your full name.",
+			// 	isValidName: "Please enter letters only."
+			// }
+		},
+
+		submitHandler: function () {
+			let userName = document.getElementById("userNameS").value;
+			let password = document.getElementById("passwordS").value;
+
+			users[userName] = password;
+			console.log(users);
+		}
+	});
+
+});
+/*------------------- validator function-------------------------*/
+$(function () {
+	$.validator.addMethod("isUserExist", function (user, elem) {
+		if (user in users) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	})
 });
 
+
+
+/*--------------------------start game-------------------------------*/
 function Start() {
+	document.getElementById("game").style.display = "block";
+	document.getElementById("score").style.display = "block";
+	document.getElementById("time").style.display = "block";
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -57,14 +135,14 @@ function Start() {
 	keysDown = {};
 	addEventListener(
 		"keydown",
-		function(e) {
+		function (e) {
 			keysDown[e.keyCode] = true;
 		},
 		false
 	);
 	addEventListener(
 		"keyup",
-		function(e) {
+		function (e) {
 			keysDown[e.keyCode] = false;
 		},
 		false
@@ -169,4 +247,33 @@ function UpdatePosition() {
 	} else {
 		Draw();
 	}
+}
+
+
+function loginScreen() {
+	document.getElementById("welcomeScreen").style.display = "none";
+	document.getElementById("login").style.display = "block";
+}
+function submitLogin() {
+	let userName = document.getElementById("LuserName").value;
+	let password = document.getElementById("Lpaswword").value;
+	validateUser();
+
+}
+function submitSignUp() {
+	let userName = document.getElementById("SuserName").value;
+	let pass = document.getElementById("Spassword").value;
+	let name = document.getElementById("fullName").value;
+	let email = document.getElementById("Email").value;
+	let birthday = document.getElementById("birthday").value;
+}
+function createUser(userName, pass, name, email, birthday) {
+
+	let user = { username: userName, password: pass, fullName: name, mail: email, dayOfBirth: birthday }
+
+
+}
+
+function validateUser() {
+
 }

@@ -1,21 +1,86 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
-	</head>
 
-	<body>
-		<div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
-		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div>
-	</body>
+<head>
+	
+	<script src="./jquery-3.4.1.slim.min.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
+	<!-- <script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"
+  ></script>
+
+  <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"
+	integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg=="
+	crossorigin="anonymous"
+	referrerpolicy="no-referrer"
+  ></script>
+
+  <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"
+	integrity="sha512-XZEy8UQ9rngkxQVugAdOuBRDmJ5N4vCuNXCh8KlniZgDKTvf7zl75QBtaVG1lEhMFe2a2DuA22nZYY+qsI2/xA=="
+	crossorigin="anonymous"
+	referrerpolicy="no-referrer"
+  ></script>
+  <script type="text/javascript" src="./app.js"></script> -->
+
+
+</head>
+
+<body>
+	<div id="score">
+		<label for="lblScore">SCORE:</label>
+		<input id="lblScore" type="text" />
+	</div>
+	<div id="time">
+		<label for="lblTime">TIME:</label>
+		<input id="lblTime" type="text" />
+	</div>
+	<div id="game">
+		<canvas id="canvas" height="600" width="600"></canvas>
+	</div>
+	<!---------------------WELCOME SCREEN---------------------->
+	<div id="welcomeScreen" style="height: 600px; width: 600px;">
+		<h1 id="welcomeTtile"> Welcome to FuckPuck</h1>
+		<button id="loginBut" onclick="loginScreen()">Login</button>
+		<button id="signupBut">Sing Up</button>
+		<button id="startGame" onclick="Start()">START THE FUCKING GAME ALREDY ! </button>
+
+	</div>
+	<!---------------------LOGIN SCREEN---------------------->
+	<div id="login" style="height: 600px; width: 600px;">
+		<h1 id="loginTitle">Please enter your details</h1>
+		<form id="loginForm" action="/action_page.php" method="get">
+			<label for="fname">User name:</label>
+			<input type="text" id="LuserName" name="userName"><br><br>
+			<label for="password">Password:</label>
+			<input type="text" id="Lpassword" name="password"><br><br>
+			<input type="button" value="Submit">
+		</form>
+
+	</div>
+	<!---------------------SIGNUP SCREEN---------------------->
+	<div id="signUp" style="height: 600px; width: 600px;">
+		<h1 id="signupTitle">Please enter your details</h1>
+		<form id="signupForm" enctype="text/plain">
+			<label for="fname">User name:</label>
+			<input type="text" id="userNameS" name="userNameS" required><br><br>
+			<label for="password">Password:</label>
+			<input type="password" id="passwordS" name="passwordS" required><br><br>
+			<label for="fullName">Full name:</label>
+			<input type="text" id="fullName" name="fullName" required><br><br>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required><br><br>
+			<label for="birthday">Date of birth:</label>
+			<input type="date" id="birthday" name="birthday" placeholder="yyyy/mm/dd" min="1900/01/01"
+				max="2022/01/01" required><br><br>
+			<input type="submit" value="Submit" >
+		</form>
+	</div>
+</body>
+
 </html>
