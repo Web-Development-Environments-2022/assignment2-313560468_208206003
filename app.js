@@ -16,6 +16,8 @@ $(document).ready(function () {
 	document.getElementById("game").style.display = "none";
 	document.getElementById("login").style.display = "none";
 	document.getElementById("signUp").style.display = "none";
+	document.getElementById("notInGame").style.display = "block";
+	
 
 
 	context = canvas.getContext("2d");
@@ -72,6 +74,7 @@ $(document).ready(function () {
 			console.log(users);
 		}
 	});
+
 
 	$("#loginForm").validate({
 		rules: {
@@ -139,6 +142,7 @@ function Start() {
 	document.getElementById("game").style.display = "block";
 	document.getElementById("score").style.display = "block";
 	document.getElementById("time").style.display = "block";
+	document.getElementById("welcomeScreen").style.display = "none";
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -299,14 +303,23 @@ function UpdatePosition() {
 
 
 function loginScreen() {
-	document.getElementById("welcomeScreen").style.display = "none";
-	document.getElementById("login").style.display = "block";
+	document.getElementById("signUp").style.display = "none";
+	document.getElementById("login").style.display = "block"
 }
 
+
 function signUpScreen() {
-	document.getElementById("welcomeScreen").style.display = "none";
+	//document.getElementById("welcomeScreen").style.display = "none";
 	document.getElementById("signUp").style.display = "block";
 }
+function backHome(){
+	//document.getElementById("notInGame").style.display = "block"
+	document.getElementById("welcomeScreen").style.display = "block";
+	document.getElementById("login").style.display = "none";
+	document.getElementById("signUp").style.display = "none";
+	document.getElementById("aboutScreen").style.display = "none";
+}
+
 // function submitLogin() {
 // 	let userName = document.getElementById("LuserName").value;
 // 	let password = document.getElementById("Lpaswword").value;
@@ -327,6 +340,8 @@ function signUpScreen() {
 
 // }
 
-function validateUser() {
-
+function aboutON(){
+	document.getElementById("aboutScreen").style.display = "block";
+	
 }
+
