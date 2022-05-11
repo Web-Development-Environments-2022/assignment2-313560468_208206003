@@ -9,13 +9,27 @@ var time_elapsed;
 var interval;
 var doc;
 var users = { "k": "k" };
+var goDownCode = 40;
+var goUpCode = 38;
+var goRightCode =39;
+var goLeftCode=37;
+var numOfFood;
+var chosenFood;
+var chosenTime;
+var chosen5PointsColor;
+var chosen15PointsColor;
+var chosen25PointsColor
+var random = false;
+var isValidLogin;
+
+
+
+	
+
 
 $(document).ready(function () {
-	document.getElementById("time").style.display = "none";
-	document.getElementById("score").style.display = "none";
-	document.getElementById("game").style.display = "none";
-	document.getElementById("login").style.display = "none";
-	document.getElementById("signUp").style.display = "none";
+	resetAllDocumnets();
+	document.getElementById("welcomeScreen").style.display = "block";
 	document.getElementById("notInGame").style.display = "block";
 	
 
@@ -72,6 +86,7 @@ $(document).ready(function () {
 
 			users[userName] = password;
 			console.log(users);
+			backHome();
 		}
 	});
 
@@ -101,15 +116,86 @@ $(document).ready(function () {
 		}
 		
 	});
+	var logInmodal = document.getElementById('login');
+	var signInmodal = document.getElementById('signUp');
+	//var settingmodal = document.getElementById('settingScreen');
+	var aboutmodal = document.getElementById('aboutScreen');
+
+	window.onclick = function(event) {
+		if (event.target == logInmodal) {
+			logInmodal.style.display = "none";
+			logOut();
+		}
+		if (event.target == signInmodal) {
+			signInmodal.style.display = "none";
+			logOut();
+		}
+		if (event.target == aboutmodal) {
+			aboutmodal.style.display = "none";
+			logOut();
+		}
+	}
+	// Settings Variables from settings
+	
+		//food
+	var fSlider = document.getElementById("totalFood");
+	var foodOutPut = document.getElementById("outputTotalFood");
+	foodOutPut.innerHTML = fSlider.value;	
+	
+	fSlider.oninput = function() {
+		foodOutPut.innerHTML = this.value;
+	  }
+	  	//time
+	var tSlider = document.getElementById("totalTime");
+	var timeOutPut = document.getElementById("outputTime");
+	timeOutPut.innerHTML = tSlider.value;
+
+	tSlider.oninput = function() {
+		timeOutPut.innerHTML = this.value;
+	  }
+	  //enemies
+	var eSlider = document.getElementById("totalEnemies");
+	var enemiesOutPut = document.getElementById("outputEnemies");
+	enemiesOutPut.innerHTML = eSlider.value;
+	
+	eSlider.oninput = function() {
+		enemiesOutPut.innerHTML = this.value;
+	  }
+	  //colors
+	var color5Points = document.getElementById("color5Pick");
+	var outputColor5Points = document.getElementById("color5points");
+	outputColor5Points.innerHTML = color5Points.value;
+
+	color5Points.oninput = function() {
+		outputColor5Points.innerHTML = this.value;
+	  }
+
+	var color15Points = document.getElementById("color15Pick");
+	var outputColor15Points = document.getElementById("color15points");
+	outputColor15Points.innerHTML = color15Points.value;
+  
+	color15Points.oninput = function() {
+		  outputColor15Points.innerHTML = this.value;
+		}
+	
+	var color25Points = document.getElementById("color25Pick");
+	var outputColor25Points = document.getElementById("color25points");
+	outputColor25Points.innerHTML = color25Points.value;
+	  
+	color25Points.oninput = function() {
+		outputColor25Points.innerHTML = this.value;
+			}
 
 });
 /*------------------- validator function-------------------------*/
 $(function () {
 	$.validator.addMethod("isUserExist", function (user, elem) {
 		if (user in users) {
+			isUserExist = false;
 			return false;
 		}
 		else {
+			isUserExist = true;
 			return true;
 		}
 	})
@@ -117,20 +203,42 @@ $(function () {
 
 $(function () {
 	$.validator.addMethod("isStrongPassword", function (password, elem) {
-		return password.length >= 6  && /\d/.test(password) && /[a-zA-Z]/.test(password);
+		if(password.length >= 6  && /\d/.test(password) && /[a-zA-Z]/.test(password)){
+			isStrongPassword = true;
+			return true;
+		}
+		else{
+			isStrongPassword= false;
+			return false;
+		}
 	})
 });
 
 $(function () {
 	$.validator.addMethod("isValidName", function (name, elem) {
-		return /^[a-zA-Z" "]+$/.test(name);
+		if(/^[a-zA-Z" "]+$/.test(name)){
+			isValidName = true;
+			return true;
+
+		}
+		else{
+			isValidName=false;
+			return false;
+		}
 	})
 });
 
 $(function () {
 	$.validator.addMethod("isValidLogin", function (password, elem) {
 		let userName = document.getElementById("userNameL").value;
-		return users[userName] == password;
+		if(users[userName] == password){
+			isValidLogin=true;
+			return true;
+		}
+		else{
+			isValidLogin=false;
+			return false;
+		}
 	})
 });
 
@@ -139,10 +247,14 @@ $(function () {
 
 /*--------------------------start game-------------------------------*/
 function Start() {
+	resetAllDocumnets();
+	document.getElementById("pacmanAnimation").style.display = "none";
 	document.getElementById("game").style.display = "block";
 	document.getElementById("score").style.display = "block";
 	document.getElementById("time").style.display = "block";
-	document.getElementById("welcomeScreen").style.display = "none";
+	if(!random){
+		getSettingsVariables();
+	}
 	board = new Array();
 	score = 0;
 	pac_color = "yellow";
@@ -188,6 +300,7 @@ function Start() {
 	addEventListener(
 		"keydown",
 		function (e) {
+			console.log(e.keyCode);
 			keysDown[e.keyCode] = true;
 		},
 		false
@@ -213,16 +326,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[goUpCode]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[goDownCode]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[goLeftCode]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[goRightCode]) {
 		return 4;
 	}
 }
@@ -308,16 +421,38 @@ function loginScreen() {
 }
 
 
+
 function signUpScreen() {
 	//document.getElementById("welcomeScreen").style.display = "none";
 	document.getElementById("signUp").style.display = "block";
 }
 function backHome(){
 	//document.getElementById("notInGame").style.display = "block"
+	resetAllDocumnets();
+	document.getElementById("loggedInScreen").style.display = "block";
+	
+}
+function logOut(){
+	resetAllDocumnets();
 	document.getElementById("welcomeScreen").style.display = "block";
+}
+function logIN(){
+	if(isValidLogin){
+		loggedinON();
+	}
+}
+function resetAllDocumnets(){
+	document.getElementById("welcomeScreen").style.display = "none";
 	document.getElementById("login").style.display = "none";
 	document.getElementById("signUp").style.display = "none";
 	document.getElementById("aboutScreen").style.display = "none";
+	document.getElementById("game").style.display = "none";
+	document.getElementById("score").style.display = "none";
+	document.getElementById("time").style.display = "none";
+	document.getElementById("settingScreen").style.display="none";
+	document.getElementById("loggedInScreen").style.display = "none";
+	document.getElementById("pacmanAnimation").style.display = "block";
+	
 }
 
 // function submitLogin() {
@@ -344,4 +479,109 @@ function aboutON(){
 	document.getElementById("aboutScreen").style.display = "block";
 	
 }
+function settingsON(){
+	resetAllDocumnets();
+	document.getElementById("settingScreen").style.display = "block";
+	
+}
+function loggedinON(){
+	resetAllDocumnets();
+	document.getElementById("loggedInScreen").style.display = "block";
+}
+function getSettingsVariables(){
+	chosenFood = parseInt(document.getElementById('totalFood').value);
+	chosenTime = parseInt(document.getElementById('totalTime').value);
+	chosen5PointsColor = document.getElementById("color5Pick").value;
+	chosen5PointsColor = document.getElementById("color15Pick").value;
+	chosen25PointsColor =document.getElementById("color25Pick").value;
+}
+function randomStart(){
+	random = true;
+	document.getElementById('UP').value = "Arrow UP";
+	document.getElementById('DOWN').value = "Arrow DOWN";
+	document.getElementById('RIGHT').value= "Arrow RIGHT";
+	document.getElementById('LEFT').value= "Arrow LEFT";
+	let food = Math.random() *(90-50) + 50;
+
+	document.getElementById('totalFood').value = food;
+
+	let time = Math.random() *(180-60) + 60
+	
+	document.getElementById('totalTime').value = time;
+
+	let randcolor;
+	randcolor ="#"+ Math.floor(Math.random() *16777215).toString(16);
+	
+	document.getElementById("color5Pick").value = randcolor;
+	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
+	
+	document.getElementById("color15Pick").value = randcolor;
+	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
+	
+	document.getElementById("color25Pick").value = randcolor;
+}
+
+// About Modal - esc to return
+$(document).on(
+	'keydown', function(event) {
+		var aboutmodal = document.getElementById('aboutScreen');
+	  if (event.key == "Escape") {
+		if (aboutmodal.style.display == "block") {
+			aboutmodal.style.display = "none";
+			welcomeON();
+		}
+	}
+});
+function chooseKey(data){
+	
+	
+	$(document).keydown(function(event){
+		let cKey;
+		let chosenKey = event.keyCode;
+		cKey = whatKeyPressed(chosenKey);
+		if(data == 'UP'){
+			document.getElementById('UP').value = cKey;
+			goUpCode=chosenKey;
+		}
+		else if(data == "RIGHT"){
+			document.getElementById('RIGHT').value = cKey;
+			goRightCode=chosenKey;
+		}
+		else if(data == "DOWN"){
+			document.getElementById('DOWN').value = cKey;
+			goDownCode=chosenKey;
+		}
+		else if(data == "LEFT"){
+			document.getElementById('LEFT').value = cKey;
+			goLeftCode=chosenKey;
+		}
+		
+		$(document).unbind();
+	});
+	
+}
+function whatKeyPressed(chosenKey){
+	
+	if(chosenKey == 38)
+	{
+		return "Arrow UP";
+	}
+	else if(chosenKey == 40)
+	{
+		return "Arrow DOWN";
+	}
+	else if(chosenKey == 39)
+	{
+		return "Arrow RIGHT";
+	}
+	else if(chosenKey == 37)
+	{
+		return "Arrow LEFT";
+	}
+	else {
+		return String.fromCharCode(chosenKey);
+	}
+}
+
+
 

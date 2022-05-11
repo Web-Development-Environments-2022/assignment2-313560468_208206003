@@ -10,6 +10,12 @@
 
 	<link rel="stylesheet" href="index.css">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+	
 
 </head>
 
@@ -25,31 +31,47 @@
 	<div id="game">
 		<canvas id="canvas" height="550" width="550"></canvas>
 	</div>
-	<!--------------------------------------NOT IN GAME--------------------------------->
+	<!--------------------------------------TOP BAR--------------------------------->
 	<div id="notInGame" class = "w3-container'">
 		<div class="w3-top">
-			<a class="active" href="#home">Home</a>
+			<a class="active" href="#home" onclick="backHome()">Home</a>
 			<a href="#about" onclick="aboutON()">About</a>
-		  </div>
+		</div>
+	<!---------------------- ENTRANCE SCREEN----------------------->
+		<div id="pacmanAnimation" class="pacman-holder moving">
+			<div class="pacman-container">
+				<div class="pacman-body"></div>
+				<div class="pacman-mouth"><div class="pacman"></div></div>
+		</div>
+		
+			<div class="dot"></div>
+	</div>
+
 		<!---------------------WELCOME SCREEN---------------------->
 		<div id="welcomeScreen">
-			<h1 id="welcomeTtile"> Welcome to FuckPuck</h1>
-			<button id="loginBut" onclick="loginScreen()">Login</button>
-			<button id="signupBut" onclick="signUpScreen()">Sing Up</button>
-			<button id="signupBut" onclick="Start()">Sing U2222222p</button>
+			<h1 id="welcomeTitle"> ARE YOU READY ?</h1>
+			
+			<input id="logInButton" type="button" value="Log in" onclick="loginScreen()">
+			<input id="signUpButton"  type="button" value="Sign up" onclick="signUpScreen()">
 			
 		</div>
 		<!---------------------LOGIN SCREEN---------------------->
 		<div id="login" class="modal">
 			<div class = "cmxform modal-content w3-round animate">
+				<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
 					<div class=" w3-container w3-padding-16" >
 
-					<h1 id="loginTitle">Please enter your details </h1>
+					<h1 id="loginTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details </h1>
+					<br>
+					
 					<form id="loginForm">
-						<input type="text" id="userNameL" name="userNameL" placeholder="User name:"><br><br>
-						<input type="password" id="passwordL" name="passwordL" placeholder="Password:"><br><br>
-						<input type="submit" value="submit">
-						<input type="cancel" value="cancel" onclick="backHome()">
+						<label for="fname"  style="color: white">User name:</label>
+						<input type="text" id="userNameL" name="userNameL" ><br>
+						<br>
+						<label for="fname" style="color: white;">Password:</label>
+						<input type="password" id="passwordL" name="passwordL"><br>
+						<input type="submit" value="submit" onclick="logIN()">
+						<input type="cancel" value="cancel" onclick="logOut()">
 					</form>
 				</div>
 			</div>
@@ -59,33 +81,45 @@
 		<div id="signUp" class="modal">
 			<div class = "cmxform modal-content w3-round animate">
 					<div class=" w3-container w3-padding-16" >
-						<h1 id="signupTitle">Please enter your details</h1>
+						<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
+						<h1 id="signupTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details</h1>
 							<form id="signUpForm" enctype="text/plain">
-								<label for="fname">User name:</label>
-								<input type="text" id="userNameS" name="userNameS" required><br><br>
-								<label for="password">Password:</label>
-								<input type="password" id="passwordS" name="passwordS" required><br><br>
-								<label for="fullName">Full name:</label>
-								<input type="text" id="fullName" name="fullName" required><br><br>
-								<label for="email">Email:</label>
-								<input type="email" id="email" name="email" required><br><br>
-								<label for="birthday">Date of birth:</label>
-								<input type="date" id="birthday" name="birthday" placeholder="yyyy/mm/dd" min="1900/01/01"
-									max="2022/01/01" required><br><br>
-								<input type="submit" value="Submit"  >
-								<input type="cancel" value="cancel" onclick="backHome()">
+								<label for="fname"style="color: white;">User name:</label>
+								<input type="text" id="userNameS" name="userNameS" required><br>
+								<label for="password"style="color: white;">Password:</label>
+								<input type="password" id="passwordS" name="passwordS" required><br>
+								<label for="fullName"style="color: white;">Full name:</label>
+								<input type="text" id="fullName" name="fullName" required><br>
+								<label for="email"style="color: white;">Email:</label>
+								<input type="email" id="email" name="email" required><br>
+								<label for="birthday"style="color: white;">Date of birth:</label>
+								<input type="date" style="color: rgb(238, 238, 134);" id="birthday" name="birthday" min="1900/01/01"
+									max="2022/01/01" required><br>
+								<input type="submit" value="Submit">
+								<input type="cancel" value="cancel" onclick="logOut()">
 								<input type="alredyUser" value = "Alredy have a user ?" onclick="loginScreen()" style="margin-left: 45px;">
 							</form>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!--------------------------------------------LoggedIn------------------------------->
+		<div id="loggedInScreen">
+			<h1 id="welcomeTitle"> Now we can start! ?</h1>
+			
+			<input type="button" id="welcomeSettings" onclick="settingsON()" value="Settings">
+			<input  type="button" id="logOut" onclick="logOut()" value="Log out">
+			
+		</div>
+					
+						
+
 		<!--------------------------------------------AboutScreen------------------------------->
 		<dialog id="aboutScreen" class ="w3-center modal">		
 			<div id="AboutDialog" class="modal-content animate"> 				
 				<div class=" w3-container w3-padding-16" >
 					<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
-					<h2 class="w3-modal-w3-center"> About </h2>
+					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 					
 						
 							<div id="aboutText">
@@ -100,6 +134,60 @@
 				</div>
 			</div>
 		</dialog>
+	</div>
+
+	<!-------------SETTINGS-------------->
+	<div id="settingScreen" class="modal">
+		<div class = "cmxform modal-content w3-round animate">
+			<div class=" w3-container w3-padding-16" >
+				<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
+					<h1 id="settingTitle" style="color:yellow">Settings</h1>
+						<div>
+							<div class="pickKeys" style="text-align: center;"> 
+							<!-------keys------>
+								<h2 class ="s_title" id="pickKeyTitle">Pick a key in order to :</h2>
+								<input type="button" class="chooseKey" id="UP" value="Move up" onclick="chooseKey('UP')" ><br>
+								<input type="button" class="chooseKey" id="DOWN" value = "Move down" onclick="chooseKey('DOWN')">
+								<input type="button" class="chooseKey" id="RIGHT" value = "Move right" onclick="chooseKey('RIGHT')">
+								<input type="button" class="chooseKey" id="LEFT" value = "Move left" onclick="chooseKey('LEFT')">
+								<br>
+							</div>
+							<!-------Food num pick------>
+							<h2 class ="s_title" id="totalFoodTitle" style="text-align: left;" >Total number of food: </h2>
+							<input type="range" class="slider" id="totalFood" min="50" max="90" value="65" style= "width: 35%;">
+							<p>Food: <span id="outputTotalFood" > </span></p>
+							<!-------Time pick------>
+							<h2 class ="s_title" id="totalTimeTitle"  style="text-align: left;"> Game time (seconds): </h2>
+							<input type="range" class="slider" id="totalTime" min="60" max="1000" value="70" style= "width: 35%;">
+							<p>Time: <span id="outputTime" > </span></p>
+							<!-------Enemies num pick------>
+							<h2 class ="s_title" id="totalEnemiesTitle" style="text-align: left;" >Enemies number: </h2>
+							<input type="range" class="slider" id="totalEnemies" min="1" max="4" value="2" style= "width: 35%;">
+							<p>Enemies: <span id="outputEnemies" > </span></p>
+							<!--------Food colors pick------>
+							<div class="colorsPick">
+								<h2 class="s_title" id="colorPick" style="text-align: right;">Food colors:</h2>
+								<h3 id="colors" style="font-size: 15px;">5 points:</h3>
+								<input type="color" id="color5Pick" name="colorsPick" value="#e66465">
+								<span id="color5points" style="display: none;"></span>
+									<br>
+								<h3 id="colors" style="font-size: 15px;">15 points:</h3>
+								<input type="color" id="color15Pick" name="colorsPick" value="#FFFF00">
+								<span id="color15points" style="display: none;"></span>
+									<br>
+								<h3 id="colors" style="font-size: 15px;">25 points:</h3>
+								<input type="color" id="color25Pick" name="colorsPick" value="#0000FF">
+								<span id="color25points" style="display: none;"></span>
+									<br>
+									
+							</div>
+							<input type="button" id="startFromSettings" value="Start" onclick="Start()">
+							<input type="button" id="Random" value="Random" onclick="randomStart()">
+
+						</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 
