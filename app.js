@@ -20,8 +20,7 @@ var chosen5PointsColor;
 var chosen15PointsColor;
 var chosen25PointsColor
 var random = false;
-var isValidLogin;
-
+var isLoggedIn;
 
 
 	
@@ -113,6 +112,7 @@ $(document).ready(function () {
 		submitHandler: function () {
 			//continue to game propertis choose;
 			console.log("successful login");
+			logIN();
 		}
 		
 	});
@@ -120,6 +120,7 @@ $(document).ready(function () {
 	var signInmodal = document.getElementById('signUp');
 	//var settingmodal = document.getElementById('settingScreen');
 	var aboutmodal = document.getElementById('aboutScreen');
+	var aboutLoggedmodal =document.getElementById("aboutScreenlogged");
 
 	window.onclick = function(event) {
 		if (event.target == logInmodal) {
@@ -133,6 +134,10 @@ $(document).ready(function () {
 		if (event.target == aboutmodal) {
 			aboutmodal.style.display = "none";
 			logOut();
+		}
+		if(event.target == aboutLoggedmodal){
+			aboutLoggedmodal.style.display = none;
+			backHome();
 		}
 	}
 	// Settings Variables from settings
@@ -434,12 +439,11 @@ function backHome(){
 }
 function logOut(){
 	resetAllDocumnets();
+	isLoggedIn = false;
 	document.getElementById("welcomeScreen").style.display = "block";
 }
 function logIN(){
-	if(isValidLogin){
-		loggedinON();
-	}
+	loggedinON();
 }
 function resetAllDocumnets(){
 	document.getElementById("welcomeScreen").style.display = "none";
@@ -452,6 +456,9 @@ function resetAllDocumnets(){
 	document.getElementById("settingScreen").style.display="none";
 	document.getElementById("loggedInScreen").style.display = "none";
 	document.getElementById("pacmanAnimation").style.display = "block";
+	document.getElementById("aboutScreenlogged").style.display = "none";
+	
+
 	
 }
 
@@ -476,7 +483,14 @@ function resetAllDocumnets(){
 // }
 
 function aboutON(){
-	document.getElementById("aboutScreen").style.display = "block";
+	
+	if(!isLoggedIn)
+	{
+		document.getElementById("aboutScreen").style.display = "block";
+	}
+	else{
+		document.getElementById("aboutScreenlogged").style.display = "block";
+	}
 	
 }
 function settingsON(){
@@ -486,7 +500,10 @@ function settingsON(){
 }
 function loggedinON(){
 	resetAllDocumnets();
+	isLoggedIn = true;
 	document.getElementById("loggedInScreen").style.display = "block";
+	
+	
 }
 function getSettingsVariables(){
 	chosenFood = parseInt(document.getElementById('totalFood').value);
@@ -580,6 +597,15 @@ function whatKeyPressed(chosenKey){
 	}
 	else {
 		return String.fromCharCode(chosenKey);
+	}
+}
+function backToMain(){
+	console.log(isLoggedIn);
+	if(isLoggedIn){
+		backHome();
+	}
+	else{
+		logOut();
 	}
 }
 
