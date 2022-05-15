@@ -17,75 +17,89 @@
 
 	<!-- header -->
 	<title> R & L Pac-man </title>
-	
+
 	<link rel="icon" type="image/png" href="images/Logo.jpg" sizes="16x16">
 
 </head>
 <!--Footer-->
 	<div class="footer">
-		<p href="#contact">Contact us at Roey.bokobza@gmail.com or at lironMor@gmail.com 
+		<p href="#contact">Contact us at Roey.bokobza@gmail.com or at lironm1995@gmail.com
 			<img src="images/rightsRes.png" width="30" style="float: left;" >
 			<img src="images/rightsRes.png" width="30" style="float: right;" >
 		</p>
-		
+
   	</div>
 
 <body>
 
-	
-	<div id="theGameMainScreen"> 
-		<div id="timers" class="w3-left" style="margin-top: 50px;"> 
-			<a id="score"> 
-				<label for="lblScore" style="width: 10%;">SCORE:</label>
-				<input id="lblScore" type="text" style="width: 30%;"/>
 
-			</a>
-			<a id="time"> 
-				<label for="lblTime" style="width: 10%;">TIME:</label>
-				<input id="lblTime" type="text" style="width: 30%; margin-left: 13px;" />
-
+	<div id="theGameMainScreen">
+		<div id="timers" class="w3-left" style="margin-top: 50px; text-align: center;">
+			<a id="score">
+				<label for="lblScore" style="width: 10%;">SCORE:</label><br>
+				<input id="lblScore" type="text" style="width: 30%; text-align: center;"/>
+			</a><br>
+			<a id="time">
+				<label for="lblTime" style="width: 10%;">TIME LEFT:</label><br>
+				<input id="lblTime" type="text" style="width: 30%; text-align: center;" />
+			</a><br>
+			<a id="livesLeft">
+				<label for="lblLives" style="width: 10%;">LIVES LEFT:</label><br>
+				<input id="lblLives" type="text" style="width: 30%; text-align: center;" />
+			</a><br>
+			<a id="exp" style="text-align: center;" >
+				<label for="b">+50 Pts:</label>
+				<img id="b" src="images/cherry.png" style="width:30px;height:30px;"><br><br>
+				<label for="h">+1 live bonus:</label>
+				<img id="h" src="images/heart.png" style="width:40px;height:40px;"><br><br>
+				<label for="t">+20 sec bonus:</label>
+				<img id="t" src="images/clock.png" style="width:30px;height:30px;"><br><br>
+				<label for="c">Add/Delete fantome</label>
+				<img id="c" src="images/candy.png" style="width:30px;height:30px;"><br><br>
+				<label for="f">-10 Pts -1 live:</label>
+				<img id="f" src="images\fantome.gif" style="width:38px;height:42px;"><br><br>
 			</a>
 		</div>
-		<div id="settingsInGame" class="w3-center w3-right">
+		<div id="settingsInGame" class="w3-center w3-right" style="text-align: center;">
 			<h2> Settings </h2>
-				<div id="keysSettingsInGame" style="text-align: center;"> 
+				<div id="keysSettingsInGame" style="text-align: center;">
 				<input type="button" class="chooseKey" id="UPingame" value="Up" onclick="chooseKey('UP')" ><br>
 				<input type="button" class="chooseKey" id="DOWNingame" value = "Down" onclick="chooseKey('DOWN')">
 				<input type="button" class="chooseKey" id="RIGHTingame" value = "Right" onclick="chooseKey('RIGHT')">
 				<input type="button" class="chooseKey" id="LEFTingame" value = " Left" onclick="chooseKey('LEFT')">
-				</div>
-		
+				</div><br>
+
 			<div id="foodPickInGame" >
-				<h2 class ="s_title" id="totalFoodTitle" style="text-align: left;">Total number of food: </h2>
+				<label class ="s_title" id="totalFoodTitle" style="text-align: left;">Total number of food: </label><br>
 				<input type="range" class="slider" id="totalFoodInGame" min="50" max="90" value="65" style= "width: 35%;">
 				<p>Food: <span id="outputTotalFoodInGame" > </span></p>
 
 			</div>
-			<div id="timePickInGame"> 
-				<h2 class ="s_title" id="totalTimeTitle"  style="text-align: left;"> Game time (seconds): </h2>
+			<div id="timePickInGame">
+				<label class ="s_title" id="totalTimeTitle"  style="text-align: left;"> Game time (seconds): </label><br>
 				<input type="range" class="slider" id="totalTimeInGame" min="60" max="1000" value="70" style= "width: 35%;">
 				<p>Time: <span id="outputTimeInGame" > </span></p>
 
 			</div>
 
 			<div id="enemiesPickInGame">
-				<h2 class ="s_title" id="totalEnemiesTitle" style="text-align: left;" >Enemies number: </h2>
+				<label class ="s_title" id="totalEnemiesTitle" style="text-align: left;" >Enemies number: </label><br>
 				<input type="range" class="slider" id="totalEnemiesInGame" min="1" max="4" value="2" style= "width: 35%;">
 				<p>Enemies: <span id="outputEnemiesInGame" > </span></p>
 
 			</div>
-		
-			
+
+
 			<div class="colorsPickInGame" style="display: inline-flex;">
-				<h3 id="colors" style="font-size: 15px;"> 5 points:</h3>
+				<label id="colors" style="font-size: 15px;"> 5 points:</label>
 				<input type="color" id="color5PickInGame" name="colorsPick" >
 				<span id="color5pointsInGame" style="display: none;" ></span>
 					<br>
-				<h3 id="colors" style="font-size: 15px;">15 points:</h3>
+				<label id="colors" style="font-size: 15px;">15 points:</label>
 				<input type="color" id="color15PickInGame" name="colorsPick" >
 				<span id="color15pointsInGame" style="display: none;"></span>
 					<br>
-				<h3 id="colors" style="font-size: 15px;">25 points:</h3>
+				<label id="colors" style="font-size: 15px;">25 points:</label>
 				<input type="color" id="color25PickInGame" name="colorsPick" >
 				<span id="color25pointsInGame" style="display: none;"></span>
 				<br>
@@ -100,12 +114,12 @@
 		<div id="game" class="main w3-center" style="margin-top: 50px;" >
 			<canvas id="canvas" height="540" width="780"></canvas>
 		</div>
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	</div>
 	</div>
 	<!--------------------------------------TOP BAR not in system--------------------------------->

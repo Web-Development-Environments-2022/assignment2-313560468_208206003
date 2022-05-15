@@ -10,6 +10,7 @@ var fantomesInterval;
 var cherryInterval;
 var clockInterval;
 var candyInterval;
+var heartInterval;
 
 var boardRows = 26;
 var boardCols = 18;
@@ -63,6 +64,12 @@ candyPic.src = 'images/candy.png';
 var candyObj;
 var candyTimer;
 var isDisplayCandy = false;
+
+var heartPic = new Image();
+heartPic.src = 'images/heart.png';
+var heartObj;
+var isDisplayHeart = false;
+var heartTimer;
 
 var wallPic = new Image();
 wallPic.src = "images/wall.png";
@@ -183,7 +190,7 @@ $(document).ready(function () {
 			logOut();
 		}
 		else if(event.target == aboutLoggedmodal){
-			
+
 			backHome();
 		}
 	}
@@ -192,17 +199,17 @@ $(document).ready(function () {
 		//food
 	var fSlider = document.getElementById("totalFood");
 	var fSliderInGame = document.getElementById("totalFoodInGame");
-	
+
 	var foodOutPut = document.getElementById("outputTotalFood");
 	var foodOuPutInGame = document.getElementById("outputTotalFoodInGame");
-	
+
 	foodOutPut.innerHTML = fSlider.value;
 	foodOuPutInGame.innerHTML = fSliderInGame.value;
-	
+
 	fSlider.oninput = function() {
 		foodOutPut.innerHTML = this.value;
 		foodOuPutInGame.innerHTML = this.value;
-		
+
 	  }
 	  //The slider inside the game
 	fSliderInGame.oninput = function() {
@@ -215,7 +222,7 @@ $(document).ready(function () {
 
 	var timeOutPut = document.getElementById("outputTime");
 	var timeOutPutInGame = document.getElementById("outputTimeInGame");
-	
+
 	timeOutPut.innerHTML = tSlider.value;
 	timeOutPutInGame.innerHTML= tSliderInGame.value;
 
@@ -261,7 +268,7 @@ $(document).ready(function () {
 		outputColor5Points.innerHTML = this.value;
 		outputColor5PointsInGame.innerHTML = this.value;
 	  }
-	color5PointsInGame.oninput() = function() {
+	color5PointsInGame.oninput = function() {
 		outputColor5PointsInGame.innerHTML = this.value;
 	  }
 
@@ -278,7 +285,7 @@ $(document).ready(function () {
 		  outputColor15Points.innerHTML = this.value;
 		  outputColor15PointsInGame.innerHTML = this.value;
 		}
-	color15PointsInGame.oninput() = function() {
+	color15PointsInGame.oninput = function() {
 		outputColor15PointsInGame.innerHTML = this.value;
 	}
 
@@ -286,7 +293,7 @@ $(document).ready(function () {
 	var color25PointsInGame = document.getElementById("color25PickInGame");
 
 	var outputColor25Points = document.getElementById("color25points");
-	var outputColor25PointsInGame =document.getElementById("color25pointsInGame"); 
+	var outputColor25PointsInGame =document.getElementById("color25pointsInGame");
 
 	outputColor25Points.innerHTML = color25Points.value;
 	outputColor25PointsInGame.innerHTML = color25PointsInGame.value;
@@ -295,10 +302,10 @@ $(document).ready(function () {
 		outputColor25Points.innerHTML = this.value;
 		outputColor25PointsInGame.innerHTML = this.value;
 	}
-	color25PointsInGame.oninput() = function(){
+	color25PointsInGame.oninput = function(){
 		outputColor25PointsInGame.innerHTML = this.value;
 	}
-		
+
 
 });
 /*------------------- validator function-------------------------*/
@@ -366,6 +373,8 @@ function Start() {
 	document.getElementById("game").style.display = "block";
 	document.getElementById("score").style.display = "block";
 	document.getElementById("time").style.display = "block";
+	document.getElementById("livesLeft").style.display = "block";
+	document.getElementById("exp").style.display = "block";
 	document.getElementById("settingsInGame").style.display = "block";
 	// if(!random){
 	// 	console.log(isInGame);
@@ -412,12 +421,14 @@ function Start() {
 		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 	];
-	
+
 	score = 0;
 	pacColor = "yellow";
 	var cnt = boardRows * boardCols;
 	var pacmanRemain = 1;
 	clockTimer = new Date();
+	candyTimer = new Date();
+	heartTimer = new Date();
 	foodRemain = chosenFood;
 	startTime = new Date();
 	cherryObj = new Object();
@@ -429,7 +440,10 @@ function Start() {
 	candyObj = new Object();
 	candyObj.i = -1;
 	candyObj.j = -1;
-	
+	heartObj = new Object();
+	heartObj.i = -1;
+	heartObj.j = -1;
+
 	for (var i = 0; i < boardRows; i++) {
 		fantomesBoard[i] = new Array(boardCols);
 		for (var j = 0; j < boardCols; j++) {
@@ -468,7 +482,7 @@ function Start() {
 			fantomesBoard[i][j] = 0;
 		}
 	}
-	
+
 
 	//init rest of food
 	while (chosenFood > 0) {
@@ -485,10 +499,10 @@ function Start() {
 		}
 		chosenFood--;
 	}
-	
+
 	//init packman
 	while (pacmanRemain != 0) {
-		
+
 		var emptyCell = findRandomEmptyCell(board);
 		var i = emptyCell[0];
 		var j = emptyCell[1];
@@ -499,7 +513,7 @@ function Start() {
 			board[i][j] = 2;
 		}
 	}
-	
+
 	//init fantomes
 	fantomes = new Array(fantomesRemain);
 	placeFantomes();
@@ -520,11 +534,7 @@ function Start() {
 		false
 	);
 
-	pacmanInterval = setInterval(UpdatePosition, 150);
-	fantomesInterval = setInterval(updateFantomes, 150);
-	cherryInterval = setInterval(updateCherry, 250);
-	clockInterval = setInterval(updateClock, 500);
-	candyInterval = setInterval(updateCandy, 500);
+	setAllIntervals();
 }
 
 function isFanstomeCell(row, col) {
@@ -602,7 +612,8 @@ function placeFantomes() {
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = timeElapsed;
+	lblTime.value = chosenTime - timeElapsed;
+	lblLives.value = livesLeft;
 	for (var i = 0; i < boardRows; i++) {
 		for (var j = 0; j < boardCols; j++) {
 			var center = new Object();
@@ -722,8 +733,13 @@ function Draw() {
 			if (clockObj.i == i && clockObj.j == j) {
 				context.drawImage(clockPic, center.x - 15, center.y - 15, 30, 30);
 			}
+
 			if (candyObj.i == i && candyObj.j == j) {
 				context.drawImage(candyPic, center.x - 15, center.y - 15, 30, 30);
+			}
+
+			if (heartObj.i == i && heartObj.j == j) {
+				context.drawImage(heartPic, center.x - 15, center.y - 15, 30, 30);
 			}
 		}
 	}
@@ -833,6 +849,9 @@ function UpdatePosition() {
 	if (shape.i == candyObj.i && shape.j == candyObj.j){
 		pacmanEatCandy();
 	}
+	if (shape.i == heartObj.i && shape.j == heartObj.j){
+		pacmanEatHeart();
+	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	timeElapsed = (currentTime - startTime) / 1000;
@@ -931,18 +950,36 @@ function updateClock() {
 
 function updateCandy() {
 	var currTime = new Date();
-	if((currTime - clockTimer)/1000 >= 10) {
+	if((currTime - candyTimer)/1000 >= 10) {
 		if (!isDisplayCandy) {
 			var freeCell = findRandomEmptyCell(board);
 			candyObj.i = freeCell[0];
 			candyObj.j = freeCell[1];
 			isDisplayCandy = true;
 			candyTimer = new Date();
-		} else if (isDisplayClock) {
-			clockObj.i = -1;
-			clockObj.j = -1;
-			isDisplayClock = false;
-			clockTimer = new Date();
+		} else if (isDisplayCandy) {
+			candyObj.i = -1;
+			candyObj.j = -1;
+			isDisplayCandy = false;
+			candyTimer = new Date();
+		}
+	}
+}
+
+function updateHeart() {
+	var currTime = new Date();
+	if((currTime - heartTimer)/1000 >= 30) {
+		if (!isDisplayHeart) {
+			var freeCell = findRandomEmptyCell(board);
+			heartObj.i = freeCell[0];
+			heartObj.j = freeCell[1];
+			isDisplayHeart = true;
+			heartTimer = new Date();
+		} else if (isDisplayHeart) {
+			heartObj.i = -1;
+			heartObj.j = -1;
+			isDisplayHeart = false;
+			heartTimer = new Date();
 		}
 	}
 }
@@ -1094,9 +1131,22 @@ function pacmanEatCandy() {
 		newFantome.dir = " right";
 		newFantome.path = fantomesBFS(freeCell[0], freeCell[1]);
 		fantomes.push(newFantome);
-	} else {
-		fantomes.shift();
+		fantomesRemain++;
+	} else if(fantomes.length > 1) {
+		var deletedFantome = fantomes.pop();
+		fantomesBoard[deletedFantome.i][deletedFantome.j] = 0;
+		fantomesRemain--;
 	}
+	candyTimer = new Date();
+	isDisplayCandy = false;
+}
+
+function pacmanEatHeart() {
+	heartObj.i = -1;
+	heartObj.j = -1;
+	livesLeft++;
+	heartTimer = new Date();
+	isDisplayHeart = false;
 }
 
 function clearAllIntervals() {
@@ -1112,8 +1162,19 @@ function clearAllIntervals() {
 	if (window.clockInterval) {
 		window.clearInterval(clockInterval);
 	}
+	if (window.heartInterval) {
+		window.clearInterval(heartInterval);
+	}
 }
 
+function setAllIntervals() {
+	pacmanInterval = setInterval(UpdatePosition, 150);
+	fantomesInterval = setInterval(updateFantomes, 150);
+	cherryInterval = setInterval(updateCherry, 250);
+	clockInterval = setInterval(updateClock, 500);
+	candyInterval = setInterval(updateCandy, 500);
+	heartInterval = setInterval(updateHeart, 1000);
+}
 
 function loginScreen() {
 
@@ -1161,13 +1222,15 @@ function resetAllDocumnets(){
 	document.getElementById("game").style.display = "none";
 	document.getElementById("score").style.display = "none";
 	document.getElementById("time").style.display = "none";
+	document.getElementById("livesLeft").style.display = "none";
+	document.getElementById("exp").style.display = "none";
 	document.getElementById("settingScreen").style.display="none";
 	document.getElementById("loggedInScreen").style.display = "none";
 	document.getElementById("pacmanAnimation").style.display = "block";
 	document.getElementById("aboutScreenlogged").style.display = "none";
 	document.getElementById("settingsInGame").style.display = "none";
 	clearAllIntervals();
-	
+
 
 
 }
@@ -1225,12 +1288,10 @@ function getSettingsVariables(){
 	chosen5PointsColor = document.getElementById("color5Pick").value;
 	chosen15PointsColor = document.getElementById("color15Pick").value;
 	chosen25PointsColor =document.getElementById("color25Pick").value;
-	food5Count = Math.floor(chosenFood * 0.6);
-	food15Count = Math.floor(chosenFood * 0.3);
-	food25Count = Math.floor(chosenFood * 0.1);
-	while(food5Count + food15Count + food25Count < chosenFood) {
-		food5Count++;
-	}
+	document.getElementById("color5PickInGame").value = chosen5PointsColor;
+	document.getElementById("color15PickInGame").value = chosen15PointsColor;
+	document.getElementById("color25PickInGame").value = chosen25PointsColor;
+	partitionFood();
 }
 function getSettingsVariablesInGame(){
 	chosenFood = parseInt(document.getElementById('totalFoodInGame').value);
@@ -1239,6 +1300,14 @@ function getSettingsVariablesInGame(){
 	chosen5PointsColor = document.getElementById("color5PickInGame").value;
 	chosen15PointsColor = document.getElementById("color15PickInGame").value;
 	chosen25PointsColor =document.getElementById("color25PickInGame").value;
+	livesLeft = 5;
+	isDisplayCandy = false;
+	isClockEaten = false;
+	isDisplayClock = false;
+	partitionFood();
+}
+
+function partitionFood() {
 	food5Count = Math.floor(chosenFood * 0.6);
 	food15Count = Math.floor(chosenFood * 0.3);
 	food25Count = Math.floor(chosenFood * 0.1);
@@ -1250,8 +1319,19 @@ function getSettingsVariablesInGame(){
 function StartInGame(){
 	isInGame = true;
 	clearAllIntervals();
-	Start();	
+	rebootInGame();
+	Start();
 }
+
+function rebootInGame() {
+	chosenFood = parseInt(document.getElementById('totalFoodInGame').value);
+	chosenTime = parseInt(document.getElementById('totalTimeInGame').value);
+	fantomesRemain = document.getElementById("totalEnemiesInGame").value;
+	chosen5PointsColor = document.getElementById("color5PickInGame").value;
+	chosen15PointsColor = document.getElementById("color15PickInGame").value;
+	chosen25PointsColor =document.getElementById("color25PickInGame").value;
+}
+
 function randomStart(){
 	random = true;
 	document.getElementById('UP').value = "Arrow UP";
@@ -1275,7 +1355,7 @@ function randomStart(){
 	randcolor ="#"+ Math.floor(Math.random() *16777215).toString(16);
 	document.getElementById("color5Pick").value = randcolor;
 	document.getElementById("color5points")
-	
+
 	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
 	document.getElementById("color15Pick").value = randcolor;
 	document.getElementById("color15points").innerHTML=randcolor;
@@ -1300,9 +1380,9 @@ $(document).on(
 					backHome();
 				}
 			}
-		
-		
-		
+
+
+
 
 });
 function chooseKey(data){
@@ -1360,7 +1440,7 @@ function whatKeyPressed(chosenKey){
 	}
 }
 function backToMain(){
-	
+
 	if(isLoggedIn){
 		backHome();
 	}
