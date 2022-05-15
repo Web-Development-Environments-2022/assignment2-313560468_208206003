@@ -3,15 +3,11 @@
     margin: 50px auto;
 } */
 #notInGame a{
-    font-size: 30px;
+    font-size: 15px;
     display: inline-block;
     padding: 20px;
 }
-#InGame a{
-    font-size: 30px;
-    display: inline-block;
-    padding: 20px;
-}
+
  input {
 
     color:white;
@@ -449,6 +445,7 @@ h2{
 
   .chooseKey {
     width: 120px;   
+    
     text-align: center;
   }
   .colorsPick{
@@ -464,4 +461,18 @@ h2{
   }
 p{
     font-size: 10px;
+}
+#ids{
+    margin-left: 200px;
+    position: fixed;
+}
+.footer {
+    
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color:white;
+    color: black;
+    text-align: center;
 }

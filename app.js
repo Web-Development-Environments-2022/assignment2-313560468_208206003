@@ -67,6 +67,8 @@ var isDisplayCandy = false;
 var wallPic = new Image();
 wallPic.src = "images/wall.png";
 
+var isInGame = false;
+
 
 
 
@@ -165,23 +167,23 @@ $(document).ready(function () {
 	var signInmodal = document.getElementById('signUp');
 	//var settingmodal = document.getElementById('settingScreen');
 	var aboutmodal = document.getElementById('aboutScreen');
-	var aboutLoggedmodal =document.getElementById("aboutScreenlogged");
+	var aboutLoggedmodal = document.getElementById('aboutScreenlogged');
 
 	window.onclick = function(event) {
 		if (event.target == logInmodal) {
 			logInmodal.style.display = "none";
 			logOut();
 		}
-		if (event.target == signInmodal) {
+		else if (event.target == signInmodal) {
 			signInmodal.style.display = "none";
 			logOut();
 		}
-		if (event.target == aboutmodal) {
+		else if (event.target == aboutmodal) {
 			aboutmodal.style.display = "none";
 			logOut();
 		}
-		if(event.target == aboutLoggedmodal){
-			aboutLoggedmodal.style.display = none;
+		else if(event.target == aboutLoggedmodal){
+			
 			backHome();
 		}
 	}
@@ -189,52 +191,114 @@ $(document).ready(function () {
 
 		//food
 	var fSlider = document.getElementById("totalFood");
+	var fSliderInGame = document.getElementById("totalFoodInGame");
+	
 	var foodOutPut = document.getElementById("outputTotalFood");
+	var foodOuPutInGame = document.getElementById("outputTotalFoodInGame");
+	
 	foodOutPut.innerHTML = fSlider.value;
-
+	foodOuPutInGame.innerHTML = fSliderInGame.value;
+	
 	fSlider.oninput = function() {
 		foodOutPut.innerHTML = this.value;
+		foodOuPutInGame.innerHTML = this.value;
+		
 	  }
+	  //The slider inside the game
+	fSliderInGame.oninput = function() {
+		foodOuPutInGame.innerHTML = this.value;
+	  }
+
 	  	//time
 	var tSlider = document.getElementById("totalTime");
+	var tSliderInGame = document.getElementById("totalTimeInGame");
+
 	var timeOutPut = document.getElementById("outputTime");
+	var timeOutPutInGame = document.getElementById("outputTimeInGame");
+	
 	timeOutPut.innerHTML = tSlider.value;
+	timeOutPutInGame.innerHTML= tSliderInGame.value;
 
 	tSlider.oninput = function() {
 		timeOutPut.innerHTML = this.value;
+		timeOutPutInGame.innerHTML = this.value;
 	  }
+
+	  //time slider inside the game
+	  tSliderInGame.oninput = function() {
+		timeOutPutInGame.innerHTML = this.value;
+	  }
+
 	  //enemies
 	var eSlider = document.getElementById("totalEnemies");
+	var eSliderInGame = document.getElementById("totalEnemiesInGame");
+
 	var enemiesOutPut = document.getElementById("outputEnemies");
+	var enemiesOutPutInGame = document.getElementById("outputEnemiesInGame");
+
 	enemiesOutPut.innerHTML = eSlider.value;
+	enemiesOutPutInGame.innerHTML = eSliderInGame.value;
 
 	eSlider.oninput = function() {
 		enemiesOutPut.innerHTML = this.value;
+		enemiesOutPutInGame.innerHTML = this.value;
 	  }
+	eSliderInGame.oninput = function(){
+		enemiesOutPutInGame.innerHTML = this.value;
+	}
+
 	  //colors
 	var color5Points = document.getElementById("color5Pick");
+	var color5PointsInGame = document.getElementById("color5PickInGame");
+
 	var outputColor5Points = document.getElementById("color5points");
+	var outputColor5PointsInGame = document.getElementById("color5pointsInGame");
+
 	outputColor5Points.innerHTML = color5Points.value;
+	outputColor5PointsInGame.innerHTML = color5PointsInGame.value;
 
 	color5Points.oninput = function() {
 		outputColor5Points.innerHTML = this.value;
+		outputColor5PointsInGame.innerHTML = this.value;
+	  }
+	color5PointsInGame.oninput() = function() {
+		outputColor5PointsInGame.innerHTML = this.value;
 	  }
 
 	var color15Points = document.getElementById("color15Pick");
+	var color15PointsInGame =  document.getElementById("color15PickInGame");
+
 	var outputColor15Points = document.getElementById("color15points");
+	var outputColor15PointsInGame = document.getElementById("color15pointsInGame");
+
 	outputColor15Points.innerHTML = color15Points.value;
+	outputColor15PointsInGame.innerHTML = color15PointsInGame.value;
 
 	color15Points.oninput = function() {
 		  outputColor15Points.innerHTML = this.value;
+		  outputColor15PointsInGame.innerHTML = this.value;
 		}
+	color15PointsInGame.oninput() = function() {
+		outputColor15PointsInGame.innerHTML = this.value;
+	}
 
 	var color25Points = document.getElementById("color25Pick");
+	var color25PointsInGame = document.getElementById("color25PickInGame");
+
 	var outputColor25Points = document.getElementById("color25points");
+	var outputColor25PointsInGame =document.getElementById("color25pointsInGame"); 
+
 	outputColor25Points.innerHTML = color25Points.value;
+	outputColor25PointsInGame.innerHTML = color25PointsInGame.value;
 
 	color25Points.oninput = function() {
 		outputColor25Points.innerHTML = this.value;
-			}
+		outputColor25PointsInGame.innerHTML = this.value;
+	}
+	color25PointsInGame.oninput() = function(){
+		outputColor25PointsInGame.innerHTML = this.value;
+	}
+		
 
 });
 /*------------------- validator function-------------------------*/
@@ -302,9 +366,24 @@ function Start() {
 	document.getElementById("game").style.display = "block";
 	document.getElementById("score").style.display = "block";
 	document.getElementById("time").style.display = "block";
-	if(!random){
+	document.getElementById("settingsInGame").style.display = "block";
+	// if(!random){
+	// 	console.log(isInGame);
+	// 	if(!isInGame){
+	// 		getSettingsVariables();
+	// 	}
+	// 	else{
+	// 		getSettingsVariablesInGame()
+	// 	}
+
+	// }
+	if(!isInGame){
 		getSettingsVariables();
 	}
+	else{
+		getSettingsVariablesInGame()
+	}
+	isInGame = false;
 	board = [
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
@@ -333,6 +412,7 @@ function Start() {
 		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
 		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 	];
+	
 	score = 0;
 	pacColor = "yellow";
 	var cnt = boardRows * boardCols;
@@ -349,6 +429,7 @@ function Start() {
 	candyObj = new Object();
 	candyObj.i = -1;
 	candyObj.j = -1;
+	
 	for (var i = 0; i < boardRows; i++) {
 		fantomesBoard[i] = new Array(boardCols);
 		for (var j = 0; j < boardCols; j++) {
@@ -387,6 +468,7 @@ function Start() {
 			fantomesBoard[i][j] = 0;
 		}
 	}
+	
 
 	//init rest of food
 	while (chosenFood > 0) {
@@ -403,20 +485,21 @@ function Start() {
 		}
 		chosenFood--;
 	}
-
+	
 	//init packman
 	while (pacmanRemain != 0) {
+		
 		var emptyCell = findRandomEmptyCell(board);
 		var i = emptyCell[0];
 		var j = emptyCell[1];
-		if (!isFanstomeCell) {
+		if (!isFanstomeCell(i,j)) {
 			shape.i = i;
 			shape.j = j;
 			pacmanRemain--;
 			board[i][j] = 2;
 		}
 	}
-
+	
 	//init fantomes
 	fantomes = new Array(fantomesRemain);
 	placeFantomes();
@@ -1033,15 +1116,28 @@ function clearAllIntervals() {
 
 
 function loginScreen() {
-	document.getElementById("signUp").style.display = "none";
-	document.getElementById("login").style.display = "block"
+
+	resetAllDocumnets();
+	if(isLoggedIn){
+		alert("You must first log out in order to log in")
+		document.getElementById("loggedInScreen").style.display = "block";
+	}
+	else{
+		document.getElementById("login").style.display = "block"
+	}
 }
 
 
 
 function signUpScreen() {
-	//document.getElementById("welcomeScreen").style.display = "none";
+	resetAllDocumnets();
+	if(isLoggedIn){
+		alert("You must first log out in order to sign up")
+		document.getElementById("loggedInScreen").style.display = "block";
+	}
+	else{
 	document.getElementById("signUp").style.display = "block";
+	}
 }
 function backHome(){
 	//document.getElementById("notInGame").style.display = "block"
@@ -1069,7 +1165,9 @@ function resetAllDocumnets(){
 	document.getElementById("loggedInScreen").style.display = "none";
 	document.getElementById("pacmanAnimation").style.display = "block";
 	document.getElementById("aboutScreenlogged").style.display = "none";
-
+	document.getElementById("settingsInGame").style.display = "none";
+	clearAllIntervals();
+	
 
 
 }
@@ -1118,11 +1216,14 @@ function loggedinON(){
 
 }
 function getSettingsVariables(){
+	if(!random){
+
+	}
 	chosenFood = parseInt(document.getElementById('totalFood').value);
 	chosenTime = parseInt(document.getElementById('totalTime').value);
 	fantomesRemain = document.getElementById("totalEnemies").value;
 	chosen5PointsColor = document.getElementById("color5Pick").value;
-	chosen5PointsColor = document.getElementById("color15Pick").value;
+	chosen15PointsColor = document.getElementById("color15Pick").value;
 	chosen25PointsColor =document.getElementById("color25Pick").value;
 	food5Count = Math.floor(chosenFood * 0.6);
 	food15Count = Math.floor(chosenFood * 0.3);
@@ -1131,42 +1232,78 @@ function getSettingsVariables(){
 		food5Count++;
 	}
 }
+function getSettingsVariablesInGame(){
+	chosenFood = parseInt(document.getElementById('totalFoodInGame').value);
+	chosenTime = parseInt(document.getElementById('totalTimeInGame').value);
+	fantomesRemain = document.getElementById("totalEnemiesInGame").value;
+	chosen5PointsColor = document.getElementById("color5PickInGame").value;
+	chosen15PointsColor = document.getElementById("color15PickInGame").value;
+	chosen25PointsColor =document.getElementById("color25PickInGame").value;
+	food5Count = Math.floor(chosenFood * 0.6);
+	food15Count = Math.floor(chosenFood * 0.3);
+	food25Count = Math.floor(chosenFood * 0.1);
+	while(food5Count + food15Count + food25Count < chosenFood) {
+		food5Count++;
+	}
+}
+
+function StartInGame(){
+	isInGame = true;
+	clearAllIntervals();
+	Start();	
+}
 function randomStart(){
 	random = true;
 	document.getElementById('UP').value = "Arrow UP";
 	document.getElementById('DOWN').value = "Arrow DOWN";
 	document.getElementById('RIGHT').value= "Arrow RIGHT";
 	document.getElementById('LEFT').value= "Arrow LEFT";
-	let food = Math.random() *(90-50) + 50;
 
+	let food = Math.floor(Math.random() *(90-50) + 50);
 	document.getElementById('totalFood').value = food;
+	document.getElementById('outputTotalFood').innerHTML = food;
 
-	let time = Math.random() *(180-60) + 60
-
+	let time = Math.floor(Math.random() *(180-60) + 60)
 	document.getElementById('totalTime').value = time;
+	document.getElementById('outputTime').innerHTML= time;
+
+	let numEnemies = Math.floor(Math.random() *(4-1) + 1);
+	document.getElementById('totalEnemies').value = numEnemies;
+	document.getElementById("outputEnemies").innerHTML = numEnemies;
 
 	let randcolor;
 	randcolor ="#"+ Math.floor(Math.random() *16777215).toString(16);
-
 	document.getElementById("color5Pick").value = randcolor;
+	document.getElementById("color5points")
+	
 	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
-
 	document.getElementById("color15Pick").value = randcolor;
-	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
+	document.getElementById("color15points").innerHTML=randcolor;
 
+	randcolor = "#"+Math.floor(Math.random() *16777215).toString(16);
 	document.getElementById("color25Pick").value = randcolor;
+	document.getElementById("color25points").innerHTML = randcolor;
 }
 
 // About Modal - esc to return
 $(document).on(
 	'keydown', function(event) {
 		var aboutmodal = document.getElementById('aboutScreen');
-	  if (event.key == "Escape") {
-		if (aboutmodal.style.display == "block") {
-			aboutmodal.style.display = "none";
-			welcomeON();
-		}
-	}
+		var aboutmodalLogged = document.getElementById('aboutScreenlogged')
+	  		if (event.key == "Escape") {
+				if (aboutmodal.style.display == "block") {
+					aboutmodal.style.display = "none";
+					logOut();
+				}
+				else if (aboutmodalLogged.style.display == "block"){
+					aboutmodalLogged.style.display = "none";
+					backHome();
+				}
+			}
+		
+		
+		
+
 });
 function chooseKey(data){
 
@@ -1177,18 +1314,22 @@ function chooseKey(data){
 		cKey = whatKeyPressed(chosenKey);
 		if(data == 'UP'){
 			document.getElementById('UP').value = cKey;
+			document.getElementById('UPingame').value = cKey;
 			goUpCode=chosenKey;
 		}
 		else if(data == "RIGHT"){
 			document.getElementById('RIGHT').value = cKey;
+			document.getElementById('RIGHTingame').value = cKey;
 			goRightCode=chosenKey;
 		}
 		else if(data == "DOWN"){
 			document.getElementById('DOWN').value = cKey;
+			document.getElementById('DOWNingame').value = cKey;
 			goDownCode=chosenKey;
 		}
 		else if(data == "LEFT"){
 			document.getElementById('LEFT').value = cKey;
+			document.getElementById('LEFTingame').value = cKey;
 			goLeftCode=chosenKey;
 		}
 
@@ -1219,7 +1360,7 @@ function whatKeyPressed(chosenKey){
 	}
 }
 function backToMain(){
-	console.log(isLoggedIn);
+	
 	if(isLoggedIn){
 		backHome();
 	}
