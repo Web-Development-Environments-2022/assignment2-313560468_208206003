@@ -64,9 +64,9 @@
 			<h2> Settings </h2>
 				<div id="keysSettingsInGame" style="text-align: center;">
 				<input type="button" class="chooseKey" id="UPingame" value="Up" onclick="chooseKey('UP')" ><br>
-				<input type="button" class="chooseKey" id="DOWNingame" value = "Down" onclick="chooseKey('DOWN')">
-				<input type="button" class="chooseKey" id="RIGHTingame" value = "Right" onclick="chooseKey('RIGHT')">
-				<input type="button" class="chooseKey" id="LEFTingame" value = " Left" onclick="chooseKey('LEFT')">
+				<input type="button" class="chooseKey" id="DOWNingame" value = "Left" onclick="chooseKey('Left')">
+				<input type="button" class="chooseKey" id="RIGHTingame" value = "Down" onclick="chooseKey('DOWN')">
+				<input type="button" class="chooseKey" id="LEFTingame" value = " Right" onclick="chooseKey('RGHT')">
 				</div><br>
 
 			<div id="foodPickInGame" >
@@ -193,6 +193,7 @@
 									max="2022/01/01" required><br>
 								<input type="submit" value="Submit">
 								<input type="cancel" value="cancel" onclick="logOut()">
+
 								<input type="alredyUser" value = "Alredy have a user ?" onclick="loginScreen()" style="margin-left: 45px;">
 							</form>
 					</div>
@@ -201,7 +202,7 @@
 		</div>
 		<!--------------------------------------------LoggedIn------------------------------->
 		<div id="loggedInScreen">
-			<h1 id="welcomeTitle"> Now we can start! ?</h1>
+			<h1 id="welcomeTitle"> Now we can start! </h1>
 
 			<input type="button" id="welcomeSettings" onclick="settingsON()" value="Settings">
 			<input  type="button" id="logOut" onclick="logOut()" value="Log out">
@@ -219,14 +220,26 @@
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
 
-							<div id="aboutText">
-								jsjsjhgh
-								sjshs
-								shjfhf
-								sjjjhss
-								fhfhf
-								ff
-								f
+							<div style="text-align:left; color: white;" id="aboutText" >
+								Liron Mor and Roey Bokobza. <br><br>
+								We used Jquery to validate the login and sign up forms. the validation is needed
+								for letting the user know if the details he entered are all in form. <br>
+								In addition, we used it to control and change the settings (what key was clicked). <br>
+								<br>
+								The template we used in order to locate the divs propelry on the screen and for creating this modal window,
+								is from w3-schools.  <br><br>
+								The diffculties we had was : <br>
+								- Validate the login and sign tp forms "on place" and inform the user when he is wrong. <br>
+								- Locate the game screen and menus propelry on the screen. <br>
+								- Make the characters look where the move. <br>
+								- Implemeting the BFS algorithm for all ghosts.<br><br>
+								Have fun!
+
+
+
+
+
+
 							</div>
 				</div>
 			</div>
@@ -240,14 +253,21 @@
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
 
-							<div id="aboutText">
-								jsjsjhgh
-								sjshs
-								shjfhf
-								sjjjhss
-								fhfhf
-								ff
-								f
+							<div id="aboutText" style="text-align:left; color: white;">
+								Liron Mor and Roey Bokobza. <br><br>
+								We used Jquery to validate the login and sign up forms. the validation is needed
+								for letting the user know if the details he entered are all in form. <br>
+								In addition, we used it to control and change the settings (what key was clicked). <br>
+								<br>
+								The template we used in order to locate the divs propelry on the screen and for this modal window,
+								is from w3-schools.  <br><br>
+								The diffculties we had was : <br>
+								- Validate the login and sign tp forms "on place" and inform the user when he is wrong. <br>
+								- Locate the game screen and menus propelry on the screen. <br>
+								- Make the characters look where the move. <br>
+								- Implemeting the BFS algorithm for all ghosts. <br><br>
+								Have fun!
+
 							</div>
 				</div>
 			</div>
@@ -264,11 +284,10 @@
 						<div>
 							<div class="pickKeys" style="text-align: center;">
 							<!-------keys------>
-								<h2 class ="s_title" id="pickKeyTitle">Pick a key in order to :</h2>
-								<input type="button" class="chooseKey" id="UP" value="Move up" onclick="chooseKey('UP')" ><br>
-								<input type="button" class="chooseKey" id="DOWN" value = "Move down" onclick="chooseKey('DOWN')">
-								<input type="button" class="chooseKey" id="RIGHT" value = "Move right" onclick="chooseKey('RIGHT')">
-								<input type="button" class="chooseKey" id="LEFT" value = "Move left" onclick="chooseKey('LEFT')">
+							<input type="button" class="chooseKey" id="UPingame" value="Up" onclick="chooseKey('UP')" ><br>
+							<input type="button" class="chooseKey" id="DOWNingame" value = "Left" onclick="chooseKey('Left')">
+							<input type="button" class="chooseKey" id="RIGHTingame" value = "Down" onclick="chooseKey('DOWN')">
+							<input type="button" class="chooseKey" id="LEFTingame" value = " Right" onclick="chooseKey('RGHT')">
 								<br>
 							</div>
 							<!-------Food num pick------>
