@@ -33,7 +33,11 @@
 <body>
 
 
+
 	<div id="theGameMainScreen">
+		<audio loop id = "music">
+			<source src="music/Music1.mp3" type="audio/mpeg">
+		  </audio>
 		<div id="timers" class="w3-left" style="margin-top: 50px; text-align: center;">
 			<a id="score">
 				<label for="lblScore" style="width: 10%;">SCORE:</label><br>
@@ -64,9 +68,11 @@
 			<h2> Settings </h2>
 				<div id="keysSettingsInGame" style="text-align: center;">
 				<input type="button" class="chooseKey" id="UPingame" value="Up" onclick="chooseKey('UP')" ><br>
-				<input type="button" class="chooseKey" id="DOWNingame" value = "Left" onclick="chooseKey('Left')">
-				<input type="button" class="chooseKey" id="RIGHTingame" value = "Down" onclick="chooseKey('DOWN')">
-				<input type="button" class="chooseKey" id="LEFTingame" value = " Right" onclick="chooseKey('RGHT')">
+				<input type="button" class="chooseKey" id="LEFTingame" value = "Left" onclick="chooseKey('LEFT')">
+				<input type="button" class="chooseKey" id="DOWNingame" value = "Down" onclick="chooseKey('DOWN')">
+				<input type="button" class="chooseKey" id="RIGHTingame" value = " Right" onclick="chooseKey('RIGHT')">
+				
+			
 				</div><br>
 
 			<div id="foodPickInGame" >
@@ -196,7 +202,7 @@
 		</div>
 		<!--------------------------------------------LoggedIn------------------------------->
 		<div id="loggedInScreen">
-			<h1 id="welcomeTitle"> Now we can start! </h1>
+			<h1 id="welcomeTitle"> SELECT YOUR GAME SETTINGS </h1>
 
 			<input type="button" id="welcomeSettings" onclick="settingsON()" value="Settings">
 			<input  type="button" id="logOut" onclick="logOut()" value="Log out">
@@ -274,12 +280,12 @@
 						<div>
 							<div class="pickKeys" style="text-align: center;">
 							<!-------keys------>
-								<h2 class ="s_title" id="pickKeyTitle">Pick a key in order to :</h2>
-								<input type="button" class="chooseKey" id="UP" value="Move up" onclick="chooseKey('UP')" ><br>
-								<input type="button" class="chooseKey" id="DOWN" value = "Move down" onclick="chooseKey('DOWN')">
-								<input type="button" class="chooseKey" id="RIGHT" value = "Move right" onclick="chooseKey('RIGHT')">
-								<input type="button" class="chooseKey" id="LEFT" value = "Move left" onclick="chooseKey('LEFT')">
-								<br>
+							<div id="keysSettingsInGame" style="text-align: center;">
+								<input type="button" class="chooseKey" id="UP" value="Up" onclick="chooseKey('UP')" ><br>
+								<input type="button" class="chooseKey" id="LEFT" value = "Left" onclick="chooseKey('LEFT')">
+								<input type="button" class="chooseKey" id="DOWN" value = "Down" onclick="chooseKey('DOWN')">
+								<input type="button" class="chooseKey" id="RIGHT" value = " Right" onclick="chooseKey('RIGHT')">
+								<br><br>
 							</div>
 							<!-------Food num pick------>
 							<h2 class ="s_title" id="totalFoodTitle" style="text-align: left;" >Total number of food: </h2>

@@ -17,10 +17,10 @@ var boardCols = 18;
 
 var doc;
 var users = { "k": "k" };
-var goDownCode = 40;
-var goUpCode = 38;
-var goRightCode =39;
-var goLeftCode=37;
+var goDownCode =40 ;
+var goUpCode = 38 ;
+var goRightCode = 39 ;
+var goLeftCode = 37;
 
 var foodRemain;
 var chosenFood;
@@ -371,6 +371,8 @@ function Start() {
 	resetAllDocumnets();
 	document.getElementById("pacmanAnimation").style.display = "none";
 	document.getElementById("game").style.display = "block";
+	var audio = document.getElementById("music");
+	audio.play();
 	document.getElementById("score").style.display = "block";
 	document.getElementById("time").style.display = "block";
 	document.getElementById("livesLeft").style.display = "block";
@@ -556,16 +558,16 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[goUpCode]) {
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[goDownCode]) {
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[goLeftCode]) {
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[goRightCode]) {
 		return 4;
 	}
 }
@@ -858,10 +860,15 @@ function UpdatePosition() {
 	timeElapsed = (currentTime - startTime) / 1000;
 	if (timeElapsed >= chosenTime) {
 		clearAllIntervals();
+		var audio = document.getElementById("music");
+		audio.pause();
 		window.alert("Game Over");
+		
 	}
 	if (foodRemain == 0) {
 		clearAllIntervals();
+		var audio = document.getElementById("music");
+		audio.pause();
 		window.alert("Game completed");
 	} else {
 		Draw();
@@ -1007,6 +1014,8 @@ function FantomeEatPacman() {
 	if (livesLeft == 0) {
 		clearAllIntervals();
 		window.alert("Loser!");
+		var audio = document.getElementById("music");
+		audio.pause();
 
 	} else {
 		//Reboot Ghosts
@@ -1230,6 +1239,8 @@ function resetAllDocumnets(){
 	document.getElementById("pacmanAnimation").style.display = "block";
 	document.getElementById("aboutScreenlogged").style.display = "none";
 	document.getElementById("settingsInGame").style.display = "none";
+	var audio = document.getElementById("music");
+	audio.pause()
 	clearAllIntervals();
 
 
@@ -1272,6 +1283,7 @@ function getSettingsVariables(){
 	document.getElementById("color5PickInGame").value = chosen5PointsColor;
 	document.getElementById("color15PickInGame").value = chosen15PointsColor;
 	document.getElementById("color25PickInGame").value = chosen25PointsColor;
+	
 	partitionFood();
 }
 function getSettingsVariablesInGame(){
@@ -1380,13 +1392,13 @@ function chooseKey(data){
 			goRightCode=chosenKey;
 		}
 		else if(data == "DOWN"){
-			document.getElementById('DOWN').value = cKey;
-			document.getElementById('DOWNingame').value = cKey;
+			document.getElementById("DOWN").value = cKey;
+			document.getElementById("DOWNingame").value = cKey;
 			goDownCode=chosenKey;
 		}
 		else if(data == "LEFT"){
-			document.getElementById('LEFT').value = cKey;
-			document.getElementById('LEFTingame').value = cKey;
+			document.getElementById("LEFT").value = cKey;
+			document.getElementById("LEFTingame").value = cKey;
 			goLeftCode=chosenKey;
 		}
 
