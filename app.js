@@ -32,7 +32,7 @@ var food5Count = 45;
 var food15Count = 25;
 var food25Count = 10;
 
-var livesLeft = 5;
+var livesLeft;
 
 var pacMouth = 0;
 var pacMouthCheck = true;
@@ -443,6 +443,7 @@ function Start() {
 	heartObj = new Object();
 	heartObj.i = -1;
 	heartObj.j = -1;
+	livesLeft = 5;
 
 	for (var i = 0; i < boardRows; i++) {
 		fantomesBoard[i] = new Array(boardCols);
@@ -984,8 +985,6 @@ function updateHeart() {
 	}
 }
 
-
-
 function resetFantomes() {
 	for (var i = 0; i < fantomes.length; i++) {
 		fantomesBoard[fantomes[i].i][fantomes[i].j] = 0;
@@ -1188,8 +1187,6 @@ function loginScreen() {
 	}
 }
 
-
-
 function signUpScreen() {
 	resetAllDocumnets();
 	if(isLoggedIn){
@@ -1200,20 +1197,24 @@ function signUpScreen() {
 	document.getElementById("signUp").style.display = "block";
 	}
 }
+
 function backHome(){
 	//document.getElementById("notInGame").style.display = "block"
 	resetAllDocumnets();
 	document.getElementById("loggedInScreen").style.display = "block";
 
 }
+
 function logOut(){
 	resetAllDocumnets();
 	isLoggedIn = false;
 	document.getElementById("welcomeScreen").style.display = "block";
 }
+
 function logIN(){
 	loggedinON();
 }
+
 function resetAllDocumnets(){
 	document.getElementById("welcomeScreen").style.display = "none";
 	document.getElementById("login").style.display = "none";
@@ -1234,26 +1235,6 @@ function resetAllDocumnets(){
 
 
 }
-
-// function submitLogin() {
-// 	let userName = document.getElementById("LuserName").value;
-// 	let password = document.getElementById("Lpaswword").value;
-// 	validateUser();
-
-// }
-// function submitSignUp() {
-// 	let userName = document.getElementById("SuserName").value;
-// 	let pass = document.getElementById("Spassword").value;
-// 	let name = document.getElementById("fullName").value;
-// 	let email = document.getElementById("Email").value;
-// 	let birthday = document.getElementById("birthday").value;
-// }
-// function createUser(userName, pass, name, email, birthday) {
-
-// 	let user = { username: userName, password: pass, fullName: name, mail: email, dayOfBirth: birthday }
-
-
-// }
 
 function aboutON(){
 
@@ -1382,12 +1363,8 @@ $(document).on(
 			}
 
 
-
-
 });
 function chooseKey(data){
-
-
 	$(document).keydown(function(event){
 		let cKey;
 		let chosenKey = event.keyCode;
@@ -1439,9 +1416,11 @@ function whatKeyPressed(chosenKey){
 		return String.fromCharCode(chosenKey);
 	}
 }
+
 function backToMain(){
 
 	if(isLoggedIn){
+		clearAllIntervals();
 		backHome();
 	}
 	else{

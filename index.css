@@ -28,7 +28,7 @@
 
 input:focus {
     border: 4px  #401ffc;
-}  
+}
 
 [type="submit"], [type="cancel"] ,[type="alredyUser"] {
     font-family: sans-serif;
@@ -55,7 +55,7 @@ input:focus {
     color: white;
     padding: 10px;
     border:2px solid yellow;
-    
+
 
 }
 
@@ -96,7 +96,7 @@ input:hover{
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
     animation-duration: 0.4s
-    
+
   }
   .modal-content input[type=email], input[type=date], input[type=password], input[type=text]{
     width:100%;
@@ -110,7 +110,7 @@ input:hover{
     font-size: 35px;
     font-weight: bold;
   }
-  
+
   .close:hover,
   .close:focus {
     color: red;
@@ -153,8 +153,8 @@ body{
     -moz-transform:rotate(45deg);
     -o-transform:rotate(45deg);
     transform:rotate(45deg);
-    -moz-animation: bite 0.5s linear infinite; 
-    -webkit-animation: bite 0.5s linear infinite; 
+    -moz-animation: bite 0.5s linear infinite;
+    -webkit-animation: bite 0.5s linear infinite;
     animation: bite 0.5s linear infinite;
 }
 .pacman-body {
@@ -182,8 +182,8 @@ body{
     -moz-animation: movedot 0.5s linear infinite;
     -webkit-animation: movedot 0.5s linear infinite;
     animation: movedot 0.5s linear infinite;
-    -moz-animation-delay:0.2s; 
-    -webkit-animation-delay:0.2s; 
+    -moz-animation-delay:0.2s;
+    -webkit-animation-delay:0.2s;
     animation-delay:0.2s;
 }
 .pacman {
@@ -215,8 +215,8 @@ body{
     -moz-transform:rotate(90deg);
     -o-transform:rotate(90deg);
     transform:rotate(90deg);
-    -moz-animation: munch 0.5s linear infinite; 
-    -webkit-animation: munch 0.5s linear infinite; 
+    -moz-animation: munch 0.5s linear infinite;
+    -webkit-animation: munch 0.5s linear infinite;
     animation: munch 0.5s linear infinite;
 
     /* To fix a yellow border on pacman's mouth */
@@ -231,7 +231,7 @@ body{
 }
 
 .pacman-holder.moving .dot{
-    -moz-animation: movedot 1s linear infinite; 
+    -moz-animation: movedot 1s linear infinite;
     -webkit-animation: movedot 1s linear infinite;
     animation: movedot 1s linear infinite;
     -moz-animation-delay:0.2s;
@@ -239,7 +239,7 @@ body{
     animation-delay:0.2s;
 }
 
-@-moz-keyframes munch 
+@-moz-keyframes munch
 {
     0% {
          -moz-transform:rotate(90deg);
@@ -251,7 +251,7 @@ body{
          -moz-transform:rotate(90deg);
     }
 }
-@-webkit-keyframes munch 
+@-webkit-keyframes munch
 {
     0% {
          -webkit-transform:rotate(90deg);
@@ -276,7 +276,7 @@ body{
     }
 }
 
-@-moz-keyframes bite 
+@-moz-keyframes bite
 {
     0% {
          -moz-transform:rotate(45deg);
@@ -288,7 +288,7 @@ body{
          -moz-transform:rotate(45deg);
     }
 }
-@-webkit-keyframes bite 
+@-webkit-keyframes bite
 {
     0% {
          -webkit-transform:rotate(45deg);
@@ -313,16 +313,7 @@ body{
     }
 }
 
-@-webkit-keyframes movedot 
-{
-    0% {
-         left:200px;
-    }
-    100% {
-         left:50px;
-    }
-}     
-@-moz-keyframes movedot 
+@-webkit-keyframes movedot
 {
     0% {
          left:200px;
@@ -331,7 +322,16 @@ body{
          left:50px;
     }
 }
-@keyframes movedot 
+@-moz-keyframes movedot
+{
+    0% {
+         left:200px;
+    }
+    100% {
+         left:50px;
+    }
+}
+@keyframes movedot
 {
     0% {
          left:200px;
@@ -344,7 +344,7 @@ body{
 @-webkit-keyframes move
 {
    0% {
-        -webkit-transform: scaleX(1);         
+        -webkit-transform: scaleX(1);
         left:0px;
    }
 
@@ -358,13 +358,13 @@ body{
 
  100% {
    left:0px;
-   -webkit-transform: scaleX(-1);     
-  }        
+   -webkit-transform: scaleX(-1);
+  }
 }
 @-moz-keyframes move
 {
    0% {
-        -moz-transform: scaleX(1);               
+        -moz-transform: scaleX(1);
         left:0px;
    }
 
@@ -378,13 +378,13 @@ body{
 
  100% {
    left:0px;
-   -moz-transform: scaleX(-1);          
-  }   
+   -moz-transform: scaleX(-1);
+  }
 }
 @keyframes move
    {
         0% {
-             transform: scaleX(1);           
+             transform: scaleX(1);
              left:0px;
         }
 
@@ -398,8 +398,8 @@ body{
 
      100% {
         left:0px;
-        transform: scaleX(-1);     
-   }          
+        transform: scaleX(-1);
+   }
 }
 h1{
     text-align: center;
@@ -422,11 +422,11 @@ h2{
     -webkit-transition: .2s;
     transition: opacity .2s;
   }
-  
+
   .slider:hover {
     opacity: 1;
   }
-  
+
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -435,7 +435,7 @@ h2{
     background: yellow;
     cursor: pointer;
   }
-  
+
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -444,17 +444,17 @@ h2{
   }
 
   .chooseKey {
-    width: 120px;   
-    
+    width: 120px;
+
     text-align: center;
   }
   .colorsPick{
       top:300px;
       margin-left: 700px;
       position: absolute;
-      
+
   }
-  
+
   [type="color"]{
       width: 40%;
 
@@ -467,7 +467,7 @@ p{
     position: fixed;
 }
 .footer {
-    
+
     position: fixed;
     left: 0;
     bottom: 0;

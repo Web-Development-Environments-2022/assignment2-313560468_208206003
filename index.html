@@ -155,8 +155,6 @@
 		<div id="login" class="modal">
 			<div class = "cmxform modal-content w3-round animate">
 				<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
-					<div class=" w3-container w3-padding-16" >
-
 					<h1 id="loginTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details </h1>
 					<br>
 
@@ -169,14 +167,12 @@
 						<input type="submit" value="submit" >
 						<input type="cancel" value="cancel" onclick="logOut()">
 					</form>
-				</div>
 			</div>
 		</div>
 		<!---------------------SIGNUP SCREEN---------------------->
 
 		<div id="signUp" class="modal">
 			<div class = "cmxform modal-content w3-round animate">
-					<div class=" w3-container w3-padding-16" >
 						<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
 						<h1 id="signupTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details</h1>
 							<form id="signUpForm" enctype="text/plain">
@@ -193,10 +189,8 @@
 									max="2022/01/01" required><br>
 								<input type="submit" value="Submit">
 								<input type="cancel" value="cancel" onclick="logOut()">
-
 								<input type="alredyUser" value = "Alredy have a user ?" onclick="loginScreen()" style="margin-left: 45px;">
 							</form>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -215,7 +209,7 @@
 		<!--------------------------------------------AboutScreen------------------------------->
 		<dialog id="aboutScreen" class ="w3-center modal">
 			<div id="AboutDialog" class="modal-content animate">
-				<div class=" w3-container w3-padding-16" >
+
 					<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
@@ -240,7 +234,6 @@
 
 
 
-							</div>
 				</div>
 			</div>
 		</dialog>
@@ -248,7 +241,6 @@
 		<!-----------------About LOOGED IN----------->
 		<dialog id="aboutScreenlogged" class ="w3-center modal">
 			<div id="AboutDialog" class="modal-content animate">
-				<div class=" w3-container w3-padding-16" >
 					<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
@@ -268,7 +260,6 @@
 								- Implemeting the BFS algorithm for all ghosts. <br><br>
 								Have fun!
 
-							</div>
 				</div>
 			</div>
 		</dialog>
@@ -278,16 +269,16 @@
 	<!-------------SETTINGS-------------->
 	<div id="settingScreen" class="modal">
 		<div class = "cmxform modal-content w3-round animate">
-			<div class=" w3-container w3-padding-16" >
 				<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
 					<h1 id="settingTitle" style="color:yellow">Settings</h1>
 						<div>
 							<div class="pickKeys" style="text-align: center;">
 							<!-------keys------>
-							<input type="button" class="chooseKey" id="UPingame" value="Up" onclick="chooseKey('UP')" ><br>
-							<input type="button" class="chooseKey" id="DOWNingame" value = "Left" onclick="chooseKey('Left')">
-							<input type="button" class="chooseKey" id="RIGHTingame" value = "Down" onclick="chooseKey('DOWN')">
-							<input type="button" class="chooseKey" id="LEFTingame" value = " Right" onclick="chooseKey('RGHT')">
+								<h2 class ="s_title" id="pickKeyTitle">Pick a key in order to :</h2>
+								<input type="button" class="chooseKey" id="UP" value="Move up" onclick="chooseKey('UP')" ><br>
+								<input type="button" class="chooseKey" id="DOWN" value = "Move down" onclick="chooseKey('DOWN')">
+								<input type="button" class="chooseKey" id="RIGHT" value = "Move right" onclick="chooseKey('RIGHT')">
+								<input type="button" class="chooseKey" id="LEFT" value = "Move left" onclick="chooseKey('LEFT')">
 								<br>
 							</div>
 							<!-------Food num pick------>
@@ -322,7 +313,7 @@
 							<input type="button" id="startFromSettings" value="Start" onclick="Start()" >
 							<input type="button" id="Random" value="Random" onclick="randomStart()">
 
-						</div>
+
 				</div>
 			</div>
 		</div>
