@@ -34,7 +34,7 @@
 
 
 
-	<div id="theGameMainScreen">
+	<div id="theGameMainScreen" >
 		<audio loop id = "music">
 			<source src="music/Music1.mp3" type="audio/mpeg">
 		  </audio>
@@ -158,8 +158,8 @@
 
 		</div>
 		<!---------------------LOGIN SCREEN---------------------->
-		<div id="login" class="modal">
-			<div class = "cmxform modal-content w3-round animate">
+		<div id="login" style="width: 50%; margin-top: 5%;margin-left: 25%;">
+			<div>
 				<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
 					<h1 id="loginTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details </h1>
 					<br>
@@ -177,9 +177,9 @@
 		</div>
 		<!---------------------SIGNUP SCREEN---------------------->
 
-		<div id="signUp" class="modal">
-			<div class = "cmxform modal-content w3-round animate">
-						<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
+		<div id="signUp" style="width: 50%; margin-top: 5%;margin-left: 25%;">
+			<div >
+					
 						<h1 id="signupTitle" class="w3-modal-w3-center" style="color: yellow;">Please enter your details</h1>
 							<form id="signUpForm" enctype="text/plain">
 								<label for="fname"style="color: white;">User name:</label>
@@ -191,7 +191,7 @@
 								<label for="email"style="color: white;">Email:</label>
 								<input type="email" id="email" name="email" required><br>
 								<label for="birthday"style="color: white;">Date of birth:</label>
-								<input type="date" style="color: rgb(238, 238, 134);" id="birthday" name="birthday" min="1900/01/01"
+								<input type="date" style="color: rgb(238, 238, 134);text-align: left;" id="birthday" name="birthday" min="1900/01/01"
 									max="2022/01/01" required><br>
 								<input type="submit" value="Submit">
 								<input type="cancel" value="cancel" onclick="logOut()">
@@ -214,13 +214,13 @@
 
 		<!--------------------------------------------AboutScreen------------------------------->
 		<dialog id="aboutScreen" class ="w3-center modal">
-			<div id="AboutDialog" class="modal-content animate">
+			<div id="AboutDialog"  class="w3-modal-content w3-card-4" style="background-color: black;">
 
 					<span onclick= "logOut()" class="close" title="Close Modal">&times;</span>
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
 
-							<div style="text-align:left; color: white;" id="aboutText" >
+							<div style="text-align:left; color: white; width: 80%;" id="aboutText" >
 								Liron Mor and Roey Bokobza. <br><br>
 								We used Jquery to validate the login and sign up forms. the validation is needed
 								for letting the user know if the details he entered are all in form. <br>
@@ -246,7 +246,7 @@
 
 		<!-----------------About LOOGED IN----------->
 		<dialog id="aboutScreenlogged" class ="w3-center modal">
-			<div id="AboutDialog" class="modal-content animate">
+			<div id="AboutDialog"  class="w3-modal-content w3-card-4" style="background-color: black;">
 					<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
 					<h1 class="w3-modal-w3-center" style="color: yellow;"> About </h1>
 
@@ -273,12 +273,12 @@
 	</div>
 
 	<!-------------SETTINGS-------------->
-	<div id="settingScreen" class="modal">
-		<div class = "cmxform modal-content w3-round animate">
+	<div id="settingScreen" style="margin-top: 5%;">
+		<div  class="w3-modal-content w3-card-4" style="background-color: rgb(72, 72, 72);">
 				<span onclick= "backHome()" class="close" title="Close Modal">&times;</span>
 					<h1 id="settingTitle" style="color:yellow">Settings</h1>
 						<div>
-							<div class="pickKeys" style="text-align: center;">
+							<div class="pickKeys" >
 							<!-------keys------>
 							<div id="keysSettingsInGame" style="text-align: center;">
 								<input type="button" class="chooseKey" id="UP" value="Up" onclick="chooseKey('UP')" ><br>
@@ -288,17 +288,17 @@
 								<br><br>
 							</div>
 							<!-------Food num pick------>
-							<h2 class ="s_title" id="totalFoodTitle" style="text-align: left;" >Total number of food: </h2>
-							<input type="range" class="slider" id="totalFood" min="50" max="90" value="65" style= "width: 35%;">
-							<p>Food: <span id="outputTotalFood" > </span></p>
+							<h2 class ="s_title" id="totalFoodTitle" style="text-align: left; margin-left: 5%;" >Total number of food: </h2>
+							<input type="range" class="slider" id="totalFood" min="50" max="90" value="65" style= "width: 35%; margin-left: 5%;">
+							<p style="margin-left: 5%;">Food: <span id="outputTotalFood" > </span></p>
 							<!-------Time pick------>
-							<h2 class ="s_title" id="totalTimeTitle"  style="text-align: left;"> Game time (seconds): </h2>
-							<input type="range" class="slider" id="totalTime" min="60" max="1000" value="70" style= "width: 35%;">
-							<p>Time: <span id="outputTime" > </span></p>
+							<h2 class ="s_title" id="totalTimeTitle" style="text-align: left; margin-left: 5%;"  > Game time (seconds): </h2>
+							<input type="range" class="slider" id="totalTime" min="60" max="1000" value="70" style= "width: 35%; margin-left: 5%;">
+							<p style="margin-left: 5%;">Time: <span id="outputTime" > </span></p>
 							<!-------Enemies num pick------>
-							<h2 class ="s_title" id="totalEnemiesTitle" style="text-align: left;" >Enemies number: </h2>
-							<input type="range" class="slider" id="totalEnemies" min="1" max="4" value="2" style= "width: 35%;">
-							<p>Enemies: <span id="outputEnemies" > </span></p>
+							<h2 class ="s_title" id="totalEnemiesTitle" style="text-align: left; margin-left: 5%;" >Enemies number: </h2>
+							<input type="range" class="slider" id="totalEnemies" min="1" max="4" value="2" style= "width: 35%; margin-left: 5%;">
+							<p style="margin-left: 5%;">Enemies: <span id="outputEnemies" > </span></p>
 							<!--------Food colors pick------>
 							<div class="colorsPick">
 								<h2 class="s_title" id="colorPick" style="text-align: right;">Food colors:</h2>
@@ -316,7 +316,7 @@
 									<br>
 
 							</div>
-							<input type="button" id="startFromSettings" value="Start" onclick="Start()" >
+							<input type="button" id="startFromSettings" value="Start" onclick="Start()" style="margin-left: 30%;" >
 							<input type="button" id="Random" value="Random" onclick="randomStart()">
 
 

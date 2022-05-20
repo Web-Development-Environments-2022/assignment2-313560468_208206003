@@ -83,6 +83,7 @@ var isInGame = false;
 $(document).ready(function () {
 	resetAllDocumnets();
 	document.getElementById("welcomeScreen").style.display = "block";
+	document.getElementById("pacmanAnimation").style.display = "block";
 	document.getElementById("notInGame").style.display = "block";
 
 
@@ -1190,8 +1191,10 @@ function loginScreen() {
 	if(isLoggedIn){
 		alert("You must first log out in order to log in")
 		document.getElementById("loggedInScreen").style.display = "block";
+		document.getElementById("pacmanAnimation").style.display = "block";
 	}
 	else{
+		document.getElementById("pacmanAnimation").style.display="none";
 		document.getElementById("login").style.display = "block"
 	}
 }
@@ -1201,9 +1204,11 @@ function signUpScreen() {
 	if(isLoggedIn){
 		alert("You must first log out in order to sign up")
 		document.getElementById("loggedInScreen").style.display = "block";
+		document.getElementById("pacmanAnimation").style.display = "block";
 	}
 	else{
-	document.getElementById("signUp").style.display = "block";
+		document.getElementById("pacmanAnimation").style.display="none";
+		document.getElementById("signUp").style.display = "block";
 	}
 }
 
@@ -1211,6 +1216,7 @@ function backHome(){
 	//document.getElementById("notInGame").style.display = "block"
 	resetAllDocumnets();
 	document.getElementById("loggedInScreen").style.display = "block";
+	document.getElementById("pacmanAnimation").style.display = "block";
 
 }
 
@@ -1218,6 +1224,7 @@ function logOut(){
 	resetAllDocumnets();
 	isLoggedIn = false;
 	document.getElementById("welcomeScreen").style.display = "block";
+	document.getElementById("pacmanAnimation").style.display = "block";
 }
 
 function logIN(){
@@ -1240,6 +1247,7 @@ function resetAllDocumnets(){
 	document.getElementById("aboutScreenlogged").style.display = "none";
 	document.getElementById("settingsInGame").style.display = "none";
 	var audio = document.getElementById("music");
+	document.getElementById("pacmanAnimation").style.display="none";
 	audio.pause()
 	clearAllIntervals();
 
@@ -1266,6 +1274,7 @@ function settingsON(){
 function loggedinON(){
 	resetAllDocumnets();
 	isLoggedIn = true;
+	document.getElementById("pacmanAnimation").style.display = "block";
 	document.getElementById("loggedInScreen").style.display = "block";
 
 
