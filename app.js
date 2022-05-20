@@ -12,8 +12,8 @@ var clockInterval;
 var candyInterval;
 var heartInterval;
 
-var boardRows = 26;
-var boardCols = 18;
+var boardRows = 25;
+var boardCols = 19;
 
 var doc;
 var users = { "k": "k" };
@@ -397,32 +397,31 @@ function Start() {
 	}
 	isInGame = false;
 	board = [
-		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-		[4, 0, 4, 0, 4, 0, 4, 4, 4, 4, 4, 0, 4, 4, 4, 0, 4, 4],
-		[4, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 4],
-		[4, 0, 4, 0, 4, 0, 4, 0, 0, 4, 0, 4, 4, 0, 4, 4, 0, 4],
-		[4, 0, 4, 0, 4, 4, 4, 0, 0, 4, 0, 4, 0, 0, 4, 0, 0, 4],
-		[4, 0, 4, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 4, 4, 0, 4, 4],
-		[4, 0, 4, 4, 4, 4, 0, 0, 4, 4, 0, 4, 0, 0, 4, 0, 0, 4],
-		[4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 4],
-		[4, 0, 4, 4, 0, 0, 0, 4, 0, 4, 4, 4, 4, 0, 4, 0, 0, 4],
-		[4, 0, 4, 0, 0, 4, 0, 4, 0, 4, 0, 0, 4, 0, 0, 0, 0, 4],
-		[4, 0, 0, 0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 4],
-		[4, 0, 4, 4, 4, 4, 0, 4, 0, 4, 0, 0, 4, 4, 4, 4, 0, 4],
-		[4, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 4],
-		[4, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4],
-		[4, 0, 4, 4, 4, 4, 0, 4, 0, 4, 4, 0, 4, 4, 4, 4, 0, 4],
-		[4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-		[4, 0, 4, 0, 4, 4, 0, 4, 0, 4, 0, 4, 4, 4, 4, 4, 0, 4],
-		[4, 0, 4, 0, 4, 0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4],
-		[4, 0, 0, 0, 4, 0, 4, 4, 0, 4, 0, 4, 0, 4, 0, 4, 0, 4],
-		[4, 0, 4, 0, 4, 0, 0, 4, 0, 4, 0, 0, 0, 4, 0, 4, 0, 4],
-		[4, 0, 4, 0, 4, 4, 0, 4, 0, 4, 0, 4, 0, 4, 4, 4, 0, 4],
-		[4, 0, 4, 0, 0, 0, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4],
-		[4, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 4, 4, 4, 4, 4, 0, 4],
-		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
+		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+		[4, 0, 4, 4, 4, 0, 0, 0, 4, 4, 4, 0, 0, 0, 4, 4, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 4, 0, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 0, 4, 0, 4, 4, 0, 0, 0, 4, 4, 0, 4, 0, 4, 0, 4],
+		[4, 0, 4, 0, 4, 0, 4, 0, 0, 4, 0, 0, 4, 0, 4, 0, 4, 0, 4],
+		[4, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4],
+		[4, 0, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 0, 4],
+		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+		[4, 0, 4, 0, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 0, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 4, 4, 4, 4, 0, 4, 0, 4, 0, 4, 4, 4, 4, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 0, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 0, 4, 0, 4],
+		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+		[4, 0, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 0, 4],
+		[4, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 4],
+		[4, 0, 4, 0, 4, 0, 4, 0, 0, 4, 0, 0, 4, 0, 4, 0, 4, 0, 4],
+		[4, 0, 4, 0, 4, 0, 4, 4, 0, 0, 0, 4, 4, 0, 4, 0, 4, 0, 4],
+		[4, 0, 4, 0, 0, 0, 4, 0, 0, 4, 0, 0, 4, 0, 0, 0, 4, 0, 4],
+		[4, 0, 4, 4, 4, 0, 0, 0, 4, 4, 4, 0, 0, 0, 4, 4, 4, 0, 4],
+		[4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
+		[4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
 	];
 
 	score = 0;
@@ -583,7 +582,7 @@ function placeFantomes() {
 			fantomes[0].j = 1;
 			fantomes[0].color = "red";
 			fantomes[0].dir = "right";
-			fantomes[0].path = fantomesBFS(0, 0);
+			fantomes[0].path = fantomesBFS(1, 1);
 		} else if (num == 2) {
 			fantomesBoard[1][boardCols - 2] = 1;
 			fantomes[1] = new Object();
@@ -591,7 +590,7 @@ function placeFantomes() {
 			fantomes[1].j = boardCols - 2;
 			fantomes[1].color = "green";
 			fantomes[1].dir = "right";
-			fantomes[1].path = fantomesBFS(0, boardCols - 1);
+			fantomes[1].path = fantomesBFS(1, boardCols - 2);
 		} else if (num == 3) {
 			fantomesBoard[boardRows - 2][1] = 1;
 			fantomes[2] = new Object();
@@ -599,15 +598,27 @@ function placeFantomes() {
 			fantomes[2].j = 1;
 			fantomes[2].color = "pink";
 			fantomes[2].dir = "right";
-			fantomes[2].path = fantomesBFS(boardRows - 1, 0);
-		} else {
+			fantomes[2].path = fantomesBFS(boardRows - 2, 1);
+		} else if (num == 4) {
 			fantomesBoard[boardRows - 2][boardCols - 2] = 1;
 			fantomes[3] = new Object();
 			fantomes[3].i = boardRows - 2;
 			fantomes[3].j = boardCols - 2;
 			fantomes[3].color = "blue";
 			fantomes[3].dir = "right";
-			fantomes[3].path = fantomesBFS(boardRows - 1, boardCols - 1);
+			fantomes[3].path = fantomesBFS(boardRows - 2, boardCols - 2);
+		} else {
+			var emptyCell = findRandomEmptyCell(board);
+			while (isFanstomeCell(emptyCell[0], emptyCell[1])){
+				emptyCell = findRandomEmptyCell(board);
+			}
+			fantomesBoard[emptyCell[0]][emptyCell[1]] = 1;
+			fantomes[num - 1] = new Object();
+			fantomes[num - 1].i = emptyCell[0];
+			fantomes[num - 1].j = emptyCell[1];
+			fantomes[num - 1].color = Math.floor(Math.random()*16777215).toString(16);
+			fantomes[num - 1].dir = "right";
+			fantomes[num - 1].path = fantomesBFS(emptyCell[0], emptyCell[1]);
 		}
 		num--;
 	}
@@ -864,9 +875,10 @@ function UpdatePosition() {
 		var audio = document.getElementById("music");
 		audio.pause();
 		window.alert("Game Over");
-		
+
 	}
 	if (foodRemain == 0) {
+		Draw();
 		clearAllIntervals();
 		var audio = document.getElementById("music");
 		audio.pause();
@@ -1178,8 +1190,8 @@ function clearAllIntervals() {
 
 function setAllIntervals() {
 	pacmanInterval = setInterval(UpdatePosition, 150);
-	fantomesInterval = setInterval(updateFantomes, 150);
-	cherryInterval = setInterval(updateCherry, 250);
+	fantomesInterval = setInterval(updateFantomes, 180);
+	cherryInterval = setInterval(updateCherry, 200);
 	clockInterval = setInterval(updateClock, 500);
 	candyInterval = setInterval(updateCandy, 500);
 	heartInterval = setInterval(updateHeart, 1000);
@@ -1292,7 +1304,7 @@ function getSettingsVariables(){
 	document.getElementById("color5PickInGame").value = chosen5PointsColor;
 	document.getElementById("color15PickInGame").value = chosen15PointsColor;
 	document.getElementById("color25PickInGame").value = chosen25PointsColor;
-	
+
 	partitionFood();
 }
 function getSettingsVariablesInGame(){
